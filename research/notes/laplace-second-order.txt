@@ -63,6 +63,9 @@ exponential factor. For each zero rho of zeta with Im rho > 0 put
   gamma = -i (rho - 1/2),   so  Re gamma = Im rho =: a > 0,
                                 |Im gamma| = |Re rho - 1/2| < 1/2.
 
+Zeta has no zeros on the real segment (0, 1) (standard, unconditional),
+so every nontrivial zero has Im rho != 0 and, by the symmetry
+rho -> 1 - rho, the zeros with Im rho > 0 represent each pair once.
 The zeros of w -> xi(1/2+w) are w = +-i*gamma over these rho, hence
 
   xi(1/2+w) = xi(1/2) prod_rho (1 + w^2/gamma^2),
@@ -94,9 +97,11 @@ in (1.1) is w^-(n+1) - Re (w - i tau)^-(n+1), and
 (Equivalently psi_tau is the Laplace transform of the nonnegative density
 2(1-cos(tau t))/tau^2, the familiar on-line contribution to -g.)
 
-Bound (1.2) shows that the series for L and for each of its derivatives
-converges uniformly on a complex neighbourhood of any compact subset of
-the positive real axis, so termwise differentiation is justified.
+Termwise differentiation is justified: on a compact real interval
+[w0, w1] all but finitely many zeros have a >= w1, and for those (1.2)
+bounds the n-th derivative of the term by 4 n!/(a^2 w0^(n+1)), which is
+summable. So each differentiated series converges uniformly on real
+compact subsets of w > 0.
 
 Split L = L_0 + E, where L_0 is the finite sum over zeros with
 Im rho <= H and E is the sum over zeros with Im rho > H. Define
@@ -122,8 +127,10 @@ By (1.2), for 0 < w <= H and every n >= 0,
 
   |E^(n)(w)| <= 4 n! T2 / w^(n+1).                                    (1.4)
 
-By E1 every term of L_0 has real gamma = tau >= tau_1, so (1.3) and the
-upper half of (1.2) give
+By E1 every term of L_0 has real gamma = tau >= tau_1. For real tau and
+EVERY w > 0 (no restriction w <= tau, unlike (1.2)), formula (1.1) and
+|Re (w - i tau)^-(n+1)| <= (w^2+tau^2)^(-(n+1)/2) <= w^-(n+1) give
+(-1)^n psi_tau^(n)(w) <= 4 n!/(tau^2 w^(n+1)). With (1.3), for all w > 0,
 
   0 < (-1)^n L_0^(n)(w) <= 4 n! S / w^(n+1).                          (1.5)
 
@@ -191,8 +198,10 @@ Consequences for s >= 20.5:
 
 (For mu: (1/2)psi(s/2) >= (1/2)log(s/2) - 1/s, which cancels the 1/s.
 For v: (1/4)psi'(s/2) <= 1/(2s) + 1/s^2. For c3:
-(1/8)psi''(s/2) >= -1/(2s^2) - 2/s^3.) Also mu > 0 and v > 0 for w > 0
-by the theta-kernel representation (ghs-first-ratio.txt).
+(1/8)psi''(s/2) >= -1/(2s^2) - 2/s^3.) Also mu > 0 from the first line,
+and v > 0: psi'(x) >= 1/x gives v >= 1/(2s) - 1/s^2 - 1/(s-1)^2, which
+is positive because (s-1)^2 > 4s for s >= 6. No input from the theta
+kernel is needed.
 
 LEMMA B. For every w >= 20, with h(w) = (1/2) log(w/(2 pi)),
 
