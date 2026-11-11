@@ -83,6 +83,36 @@ Lean here, and first-order monotonicity is insufficient for the proposed global
 proof route. The xi-specific potential property is supplied by Newman's
 published theorem; this project does not reprove that entire theorem.
 
+### Second-order inequality and first Hankel determinant
+
+Status: **written argument with interval-checked constants; not yet
+independently reviewed; not formalized in Lean; no novelty claimed.**
+
+[The second-order note](../research/notes/laplace-second-order.txt) argues that,
+given Platt–Trudgian's zero verification, the Bellotti–Wong counting bound,
+and the location of the first zero,
+
+\[
+L''(w)>0,\qquad L(w)L''(w)-[L'(w)]^2>0\qquad\text{for every } w>0 .
+\]
+
+These are the two lower bounds on `c_3` that the research direction named as
+the next target. For `0 < w <= 20` the zero expansion of `L` is used: verified
+zeros contribute with the right sign and the unverified tail is smaller by a
+factor of more than `10^5`. For `w >= 20` the explicit formula with elementary
+digamma and prime-sum bounds is used. The same zero-side estimate gives every
+derivative sign `(-1)^n L^{(n)} > 0` on `0 < w <= 10^5`.
+
+`research/laplace_second_order.py` checks the constants with outward-rounded
+intervals. `research/laplace_numeric_crosscheck.py` is a separate exploratory
+floating-point comparison that uses the theta kernel and no zero data.
+
+**This result does not bring the programme closer to RH.** The argument never
+examines zeros above height `3 * 10^12`, so these inequalities would hold
+whether or not RH fails there. It shows that a fixed finite number of the
+required inequalities follows from finite verification; the open problem is
+a statement uniform in the derivative order.
+
 ## What does Lean currently certify?
 
 `RhCertificates.tangent_negative` checks this arithmetic implication:
@@ -111,10 +141,11 @@ Consequently the full startup result and finite zero-tail certificate are
 ## The remaining gap
 
 The global sign of `g` remains unproved. The current analytic route needs
-higher-order inequalities for `L`, or corresponding transformed moment-matrix
-positivity. GHS provides an upper bound on a third derivative, whereas the next
-conditions need a quantitative lower bound. See
-[RESEARCH_DIRECTION.md](RESEARCH_DIRECTION.md).
+every higher-order inequality for `L`, or the corresponding transformed
+moment-matrix positivity for every size. The second-order note indicates that
+any single fixed order is likely reachable from finite zero verification and
+therefore uninformative; the missing ingredient is control that is uniform in
+the order. See [RESEARCH_DIRECTION.md](RESEARCH_DIRECTION.md).
 
 ## Primary references
 

@@ -32,6 +32,7 @@ together with Suzuki's
 | Prime-side and zero-tail checks | Reproducible finite-range interval verification; together these cover `0 < t <= 40` | Global nonpositivity or a new zero-verification height |
 | Finite Gram-matrix checks | Checks of explicitly specified matrices | Positivity for every matrix size and point set |
 | GHS / Laplace analysis | Written derivation using established prior results | All higher-order inequalities needed for this approach |
+| Second-order Laplace inequality and first Hankel determinant | Written argument with interval-checked constants, conditional on published zero verification; awaiting independent review | Anything about zeros above the verified height, or the higher-order inequalities |
 | `RhCertificates.tangent_negative` | Lean-checked arithmetic implication | The analytic hypotheses connecting it to the screw function |
 
 Here `t = 40` is an argument of the auxiliary function. It is **not** the height
@@ -53,7 +54,12 @@ python3 -m unittest discover -s research -p 'test_*.py' -v
 python3 research/screw_interval.py --limit 1000
 python3 research/kernel_control.py
 python3 research/zero_tail_certificate.py
+python3 research/laplace_second_order.py
+python3 research/laplace_numeric_crosscheck.py
 ```
+
+The last command is an exploratory floating-point cross-check, not a
+certificate; see [the second-order note](research/notes/laplace-second-order.txt).
 
 The scripts assert the inequalities they check. A successful run ends without
 an assertion failure. The zero-tail check uses a small embedded set of certified

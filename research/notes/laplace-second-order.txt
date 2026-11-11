@@ -1,0 +1,335 @@
+Second-order Laplace inequality and first Hankel determinant for xi
+==================================================================
+Research batch, 2026-11-11.
+
+Status: WRITTEN ARGUMENT with interval-checked constants, conditional on
+three published external inputs (E1-E3 below). Not formalized in Lean.
+Not independently reviewed yet. No novelty is claimed: the argument is a
+short consequence of finite zero verification and is probably folklore.
+
+THIS IS NOT A PROOF OF RH, AND IT DOES NOT MOVE THE COMPLETE-MONOTONICITY
+ROUTE CLOSER TO ONE. Section 7 explains why: the proof never looks at
+zeros above the verified height, so the two inequalities it establishes
+carry no information about them.
+
+0. Statement
+------------
+
+Notation as in ghs-first-ratio.txt and docs/RESEARCH_DIRECTION.md:
+
+  kappa(w) = log[xi(1/2+w)/xi(1/2)],   L(w) = kappa'(w)/w^2,   w > 0,
+  mu = kappa'(w),  v = kappa''(w),  c3 = kappa'''(w).
+
+THEOREM. Assume E1-E3. Then for every real w > 0
+
+  (a)  L''(w) > 0,            equivalently  w^2 c3 > 4 w v - 6 mu;
+  (b)  L(w) L''(w) - L'(w)^2 > 0,
+                              equivalently  c3 > v^2/mu - 2 mu/w^2.
+
+These are the two lower bounds on c3 named as the "precise next analytic
+inequality" in docs/RESEARCH_DIRECTION.md. Since L > 0, (b) implies (a);
+both are proved because (a) comes with a statement for every derivative
+order on a bounded range (Lemma A).
+
+External inputs, used as hypotheses:
+
+  E1  Every zero rho of zeta with 0 < |Im rho| <= H := 3*10^12 has
+      Re rho = 1/2.
+      Platt--Trudgian, Bull. LMS 53 (2021), arXiv:2004.09765. Abstract:
+      all zeros beta+i*gamma with 0 < gamma <= 3*10^12 have beta = 1/2.
+  E2  For T >= e,  |N(T) - T/(2 pi) log(T/(2 pi e))| <= R(T),
+      R(T) = 0.11200 log T + 0.12567 loglog T + 3.77417.
+      Bellotti--Wong, arXiv:2412.15470v2, Theorem 1.1, second bound.
+      The statement, constants and range T >= e were re-read from the
+      arXiv HTML in this batch. The paper writes N(T) as a cardinality;
+      this note assumes the standard convention that N(T) counts zeros
+      with 0 < Im rho <= T according to multiplicity.
+  E3  The least positive zero ordinate tau_1 lies in (14.13, 14.14), and
+      zeta has no zero with 0 < Im rho < 14.
+      LMFDB zero data (research/lmfdb_first_five_source.txt).
+
+Simplicity of zeros is not used anywhere. All sums over zeros below are
+with multiplicity. The constants have very large slack: Section 6 records
+that the tail sum T2 could be 7*10^5 times larger than the bound obtained
+from E1-E2 and the argument would still close.
+
+1. Zero expansion of L (unconditional)
+--------------------------------------
+
+xi(1/2+w) is an even entire function of w of order one, so it is an
+entire function of w^2 of order 1/2 and its Hadamard product has no
+exponential factor. For each zero rho of zeta with Im rho > 0 put
+
+  gamma = -i (rho - 1/2),   so  Re gamma = Im rho =: a > 0,
+                                |Im gamma| = |Re rho - 1/2| < 1/2.
+
+The zeros of w -> xi(1/2+w) are w = +-i*gamma over these rho, hence
+
+  xi(1/2+w) = xi(1/2) prod_rho (1 + w^2/gamma^2),
+  kappa'(w) = sum_rho 2w/(w^2+gamma^2),
+  L(w)      = sum_rho psi_gamma(w),   psi_gamma(w) = 2/[w (w^2+gamma^2)].
+
+The sums run over zeros with Im rho > 0 and converge absolutely because
+sum 1/|gamma|^2 < infinity. Partial fractions give
+
+  psi_gamma(w) = (2/gamma^2) { 1/w - (1/2)[1/(w-i gamma) + 1/(w+i gamma)] },
+
+  (-1)^n psi_gamma^(n)(w)
+     = (2 n!/gamma^2) { w^-(n+1)
+         - (1/2)[(w-i gamma)^-(n+1) + (w+i gamma)^-(n+1)] }.         (1.1)
+
+For real w > 0, |w +- i gamma| >= |Im(w +- i gamma)| = a and
+|gamma|^2 >= a^2. Therefore, whenever 0 < w <= a,
+
+  |psi_gamma^(n)(w)| <= (2 n!/a^2) [w^-(n+1) + a^-(n+1)]
+                     <= 4 n!/(a^2 w^(n+1)).                           (1.2)
+
+If gamma = tau is real (the zero is on the critical line), the bracket
+in (1.1) is w^-(n+1) - Re (w - i tau)^-(n+1), and
+|w - i tau| = (w^2+tau^2)^(1/2), so
+
+  (-1)^n psi_tau^(n)(w)
+     >= (2 n!/(tau^2 w^(n+1))) [1 - (1 + tau^2/w^2)^(-(n+1)/2)] > 0.  (1.3)
+
+(Equivalently psi_tau is the Laplace transform of the nonnegative density
+2(1-cos(tau t))/tau^2, the familiar on-line contribution to -g.)
+
+Bound (1.2) shows that the series for L and for each of its derivatives
+converges uniformly on a complex neighbourhood of any compact subset of
+the positive real axis, so termwise differentiation is justified.
+
+Split L = L_0 + E, where L_0 is the finite sum over zeros with
+Im rho <= H and E is the sum over zeros with Im rho > H. Define
+
+  T2 = sum_{Im rho > H} 1/(Im rho)^2,   S = sum_{Im rho > 0} 1/(Im rho)^2.
+
+Tail constants. The Stieltjes computation of zero-tail.txt, formula (1),
+is for A(H) <= 2*T2-bound; halving it, E2 gives
+
+  T2 <= [log(H/(2 pi)) + 1]/(2 pi H)
+        + [4 R(H) + .112 + .12567/log H]/(2 H^2)  <  1.48 * 10^-12.
+
+For S: by E3, N(u) = 0 for u < 14. For u >= 14, E2 gives
+N(u) <= u log(u)/(2 pi) - [u log(2 pi e)/(2 pi) - R(u)], and the bracket
+is positive at u = 14 with derivative at least
+log(2 pi e)/(2 pi) - (.112+.12567)/14 > 0. Hence
+
+  S = 2 int_14^infinity N(u) u^-3 du <= (log 14 + 1)/(14 pi) < 0.0828.
+
+(The true value is about 0.0231; nothing sharper is needed.)
+
+By (1.2), for 0 < w <= H and every n >= 0,
+
+  |E^(n)(w)| <= 4 n! T2 / w^(n+1).                                    (1.4)
+
+By E1 every term of L_0 has real gamma = tau >= tau_1, so (1.3) and the
+upper half of (1.2) give
+
+  0 < (-1)^n L_0^(n)(w) <= 4 n! S / w^(n+1).                          (1.5)
+
+2. Lemma A: every derivative sign on a bounded range
+----------------------------------------------------
+
+LEMMA A. Assume E1-E3 and let 0 < W <= H. For every integer n >= 0 and
+every 0 < w <= W,
+
+  (-1)^n L^(n)(w) >= (n!/w^(n+1))
+        * { (2/tau_1^2) [1 - (1 + tau_1^2/W^2)^(-1/2)] - 4 T2 }.
+
+The brace is positive for W = 20 (it exceeds 1.8*10^-3) and for W = 10^5
+(it exceeds 9*10^-11).
+
+Proof. In L_0 every term is positive by (1.3); keep only the term of
+tau_1. Its bracket in (1.3) is at least 1-(1+tau_1^2/w^2)^(-1/2) because
+n+1 >= 1, and that is decreasing in w. Subtract (1.4). For the numerical
+claims use tau_1 in (14.13, 14.14); for W = 10^5 use
+1-(1+x)^(-1/2) >= 0.49 x at x = tau_1^2/W^2. Both are asserted in
+research/laplace_second_order.py in square-root-free form.            QED
+
+In particular L''(w) > 0 for 0 < w <= 20. Note what Lemma A is: ALL the
+complete-monotonicity inequalities hold on (0, 10^5], with a single
+threshold independent of n. This is an explicit form of the local lemma
+in laplace-moment-audit.txt, Section 3.
+
+3. Lemma B: w >= 20 by the explicit formula
+-------------------------------------------
+
+Let s = w + 1/2 >= 20.5. From xi(s) = (1/2) s (s-1) pi^(-s/2)
+Gamma(s/2) zeta(s) and the Dirichlet series of zeta'/zeta (s > 1),
+
+  mu = 1/s + 1/(s-1) - (1/2) log pi + (1/2) psi(s/2) - Z0,
+  v  = -1/s^2 - 1/(s-1)^2 + (1/4) psi'(s/2) + Z1,
+  c3 = 2/s^3 + 2/(s-1)^3 + (1/8) psi''(s/2) - Z2,
+  Zj = sum_{n>=2} Lambda(n) (log n)^j n^-s >= 0,
+
+where psi is here the digamma function.
+
+Digamma bounds, x > 0. From psi'(x) = sum_{k>=0} (x+k)^-2 and
+psi''(x) = -2 sum_{k>=0} (x+k)^-3, comparing each sum with its first
+term plus the integral of the (decreasing) summand:
+
+  psi'(x) <= 1/x + 1/x^2,       psi''(x) >= -1/x^2 - 2/x^3.
+
+Also psi(x) >= log x - 1/x (standard; it follows from
+psi'(t) - 1/t <= 1/t^2 and psi(x) - log x -> 0).
+
+Prime sums. Lambda(n) (log n)^j <= max(1, (log n)^3) <= n^2 for n >= 2
+and j <= 2, so for s >= 5
+
+  Zj <= sum_{n>=2} n^(2-s) <= 2^(2-s) + 2^(3-s)/(s-3) <= 2^(3-s).
+
+f(s) = (s-1)^3 2^(3-s) is decreasing for s-1 >= 3/log 2, in particular
+for s >= 6, and f(20) = 19^3/2^17 < 1. Hence for s >= 20
+
+  Zj <= 2^(3-s) <= min{ 1/(s-1), 1/(s-1)^2, 2/(s-1)^3 }.
+
+Consequences for s >= 20.5:
+
+  mu >= (1/2) log(s/(2 pi)) + [1/(s-1) - Z0] >= (1/2) log(s/(2 pi)),
+  v  <= 1/(2s) - 1/(s-1)^2 + Z1              <= 1/(2s),
+  c3 >= -1/(2 s^2) + 2/(s-1)^3 - Z2          >= -1/(2 s^2).
+
+(For mu: (1/2)psi(s/2) >= (1/2)log(s/2) - 1/s, which cancels the 1/s.
+For v: (1/4)psi'(s/2) <= 1/(2s) + 1/s^2. For c3:
+(1/8)psi''(s/2) >= -1/(2s^2) - 2/s^3.) Also mu > 0 and v > 0 for w > 0
+by the theta-kernel representation (ghs-first-ratio.txt).
+
+LEMMA B. For every w >= 20, with h(w) = (1/2) log(w/(2 pi)),
+
+  w^4 L''(w)              = w^2 c3 - 4 w v + 6 mu  >= 6 h(w) - 5/2 > 0,
+  w^6 [L L'' - L'^2](w)   = 2 mu^2 + w^2 (mu c3 - v^2)
+                         >= 2 h(w)^2 - h(w)/2 - 1/4 > 0.
+
+Proof. Since w < s: w^2 c3 >= -1/2, 4 w v <= 2, and mu >= h(w). This is
+the first line; 6h - 5/2 > 0 because h(20) > 0.578. For the second,
+mu > 0 and c3 >= -1/(2w^2) give w^2 mu c3 >= -mu/2, and 0 < v <= 1/(2w)
+gives w^2 v^2 <= 1/4. So the left side is at least q(mu) with
+q(x) = 2x^2 - x/2 - 1/4, which is increasing for x > 1/8 and positive
+exactly when x > 1/2. Finally mu >= h(w) >= h(20) > 1/2, that is,
+20 > 2 pi e = 17.07...                                                QED
+
+4. Lemma C: the Hankel determinant for 0 < w <= 20
+--------------------------------------------------
+
+Write D[f] = f f'' - f'^2 and D[f,k] = f k'' + k f'' - 2 f' k', so that
+D[f+k] = D[f] + D[f,k] + D[k].
+
+(i) One on-line zero. For psi_tau with real tau, a direct computation
+(a := w^2 + tau^2) gives
+
+  psi   = 2/(w a),
+  psi'  = -2 [1/(w^2 a) + 2/a^2],
+  psi'' = 4/(w^3 a) + 4/(w a^2) + 16 w/a^3,
+  D[psi_tau] = 4 (tau^4 + 3 w^4)/(w^4 a^4) >= 3/(w^4 a^2),
+
+the last step because (w^2+tau^2)^2 <= (4/3)(3 w^4 + tau^4) by
+Cauchy--Schwarz. These identities are checked in exact rational
+arithmetic in research/test_laplace_second_order.py.
+
+(ii) Superadditivity on L_0. If f and k are Laplace transforms of
+nonnegative densities p and r, then
+
+  D[f,k](w) = int int (t-u)^2 e^(-w(t+u)) p(t) r(u) dt du >= 0,
+
+and likewise D[f] >= 0. All terms of L_0 are of this kind by E1, so
+D[L_0] >= D[psi_{tau_1}] >= 3/(w^4 (w^2+tau_1^2)^2).
+
+(iii) Perturbation by the tail. With (1.4) and (1.5) for n = 0, 1, 2,
+
+  |D[L_0,E]| <= (4S)(8T2) + (4T2)(8S) + 2 (4S)(4T2) = 96 S T2,
+  |D[E]|     <= (4T2)(8T2) + (4T2)^2               = 48 T2^2,
+
+each divided by w^4.
+
+LEMMA C. Assume E1-E3. For 0 < w <= W <= H,
+
+  w^4 [L L'' - L'^2](w) >= 3/(W^2+tau_1^2)^2 - 96 S T2 - 48 T2^2,
+
+and for W = 20 the right side exceeds 8.3*10^-6 > 0.               QED
+
+5. Proof of the theorem
+-----------------------
+
+(a): Lemma A with n = 2, W = 20 covers 0 < w <= 20; Lemma B covers
+w >= 20. (b): Lemma C covers 0 < w <= 20; Lemma B covers w >= 20.     QED
+
+6. Reproduction and independent checks
+--------------------------------------
+
+  python3 research/laplace_second_order.py
+      Outward-rounded interval check of every numerical constant above
+      (T2, S, the three margins at W = 20, Lemma A at W = 10^5, h(20)).
+      Expected last line begins "PASS". Recorded output:
+      research/laplace_second_order_result.txt.
+      The script also reports that T2 could be larger by a factor
+      3.0*10^8 (Lemma A) or 7.0*10^5 (Lemma C) before the argument fails.
+
+  python3 -m unittest discover -s research -p 'test_laplace*.py' -v
+      Exact Fraction checks of formula (1.1) for n = 0, 1, 2, of the
+      one-zero determinant in Lemma C(i), and of the L'' and determinant
+      algebra.
+
+  python3 research/laplace_numeric_crosscheck.py
+      EXPLORATORY float computation, not a certificate. It evaluates
+      mu, v, c3 from the theta kernel at 100+ points in 0.01 <= w <= 200
+      with no zero data, compares mu with the explicit formula of
+      Section 3 (agreement 1.3*10^-11), and asserts every inequality of
+      Lemmas A (n = 0, 1, 2), B and C at each sample. Because it shares
+      no code or input with the proof, it is a guard against algebra and
+      normalisation errors, nothing more.
+
+What a reviewer should check by hand: the Hadamard form in Section 1;
+the direction of each digamma and prime-sum bound in Section 3; the
+double-integral identity in Section 4(ii); that E2 is quoted with the
+correct main term (no +7/8) and that N counts multiplicity.
+
+7. What this does NOT show, and what it implies for the programme
+-----------------------------------------------------------------
+
+(1) No information about high zeros. The proof uses zeros above H only
+through |Re rho - 1/2| < 1/2 and the counting bound E2. A hypothetical
+off-line zero at height above 3*10^12 is compatible with every step.
+So (a) and (b), although they are necessary conditions for RH and were
+the stated next targets, cannot distinguish RH from its failure at
+large height. Proving them is bookkeeping on top of E1, not new
+analytic information about xi.
+
+(2) The same mechanism reaches further, and that is the real lesson.
+Lemma A already gives every order n on (0, 10^5]. On the other side,
+laplace-moment-audit.txt, Section 4, gives each FIXED order for
+w >= W_n with W_n of size about 2 pi exp(H_{n+1} - 1), roughly 3.5 n.
+So one should expect (not proved here) that each individual inequality
+(-1)^n L^(n) > 0 holds on all of w > 0 for every n up to some large
+finite N_0 determined by the verification height, by exactly this
+patching. That would still be a finite list. RH needs all n at once,
+and the two regimes separate as n grows: order n at the point w feels
+the primes once n is comparable to w log 2 (the terms
+(w log m)^k/k! * m^-s of the differentiated prime sum peak near
+k = w log m with size m^(-1/2)). The obstruction to this route is
+therefore uniformity in the order n, equivalently the behaviour of the
+high-order inequalities in the window where neither finitely many zeros
+nor the explicit formula dominates. Any future attempt on the hierarchy
+should be judged by whether it says something uniform in n; proving one
+more fixed order by patching adds nothing.
+
+(3) Not covered: the higher Hankel determinants, the shifted Hankel
+family, any statement at complex w, and any Lean formalization.
+
+(4) Dependence. The result is conditional on E1-E3 in the same sense as
+the zero-tail certificate. It does not use Newman's theorem or GHS.
+
+Concrete next tests, in order of usefulness:
+
+  * Independent review of Sections 1-4 by someone who did not write
+    them.
+  * Decide whether to make point (2) precise: an explicit N_0 with
+    (-1)^n L^(n) > 0 on w > 0 for all n <= N_0. This needs Lemma B for
+    general n with explicit prime-sum control. It would quantify the
+    obstruction; it would not remove it.
+  * Look for any inequality in the hierarchy whose proof would have to
+    use zeros above H. None is known to the author of this note.
+
+Sources: Platt--Trudgian (arXiv:2004.09765); Bellotti--Wong
+(arXiv:2412.15470v2, Theorem 1.1); LMFDB zeta zeros; Nakamura--Suzuki
+(2023) and Suzuki (2023) for the role of g and L; standard facts on the
+Hadamard product of xi and on the digamma function (e.g. DLMF 5.15).
