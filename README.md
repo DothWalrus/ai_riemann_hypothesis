@@ -34,6 +34,7 @@ together with Suzuki's
 | GHS / Laplace analysis | Written derivation using established prior results | All higher-order inequalities needed for this approach |
 | Second-order Laplace inequality and first Hankel determinant | Written argument with interval-checked constants, conditional on published zero verification; awaiting independent review | Anything about zeros above the verified height, or the higher-order inequalities |
 | Map of the Laplace hierarchy (Post–Widder window, detection threshold) | Written arguments awaiting review; exploratory toy model | Any inequality at fine resolution, or anything about zeros above the verified height |
+| Consequences of a zero-free half-plane `Re s > 7/8` | Finite-range interval checks **conditional on an external result this repository has not verified** | The external result itself; any unbounded range; RH |
 | `RhCertificates.tangent_negative` | Lean-checked arithmetic implication | The analytic hypotheses connecting it to the screw function |
 
 Here `t = 40` is an argument of the auxiliary function. It is **not** the height
@@ -58,11 +59,15 @@ python3 research/zero_tail_certificate.py
 python3 research/laplace_second_order.py
 python3 research/laplace_numeric_crosscheck.py
 python3 research/postwidder_toy.py
+python3 research/zero_tail_seven_eighths.py
 ```
 
-The last two commands are exploratory floating-point computations, not
-certificates; see [the second-order note](research/notes/laplace-second-order.txt)
-and [the map note](research/notes/post-widder-map.txt).
+The two commands before the last are exploratory floating-point computations,
+not certificates; see [the second-order note](research/notes/laplace-second-order.txt)
+and [the map note](research/notes/post-widder-map.txt). The last command
+checks finite ranges that are conditional on an external zero-free half-plane
+result which this repository has not verified; see
+[the conditional note](research/notes/quasi-rh-consequences.txt).
 
 The scripts assert the inequalities they check. A successful run ends without
 an assertion failure. The zero-tail check uses a small embedded set of certified

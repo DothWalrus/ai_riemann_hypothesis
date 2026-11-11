@@ -138,6 +138,28 @@ with one invented off-line zero. It makes no statement about zeta.
 
 These results explain why the route is hard; they do not advance it.
 
+### Conditional consequences of a zero-free half-plane `Re s > 7/8`
+
+Status: **written argument with interval-checked constants. Items 2 and 3
+are conditional on an external input that this repository has not
+verified.** No novelty claimed.
+
+The external input (called E4 in
+[the conditional note](../research/notes/quasi-rh-consequences.txt)) is the
+statement `zeta(s) != 0` for `Re s > 7/8`, from an OpenAI preprint dated
+30 September 2026. The `openai/math` repository lists a Lean declaration for
+it. That proof was not built or checked here, and no peer review is known to
+us. It is used as a cited hypothesis, like the published zero verification.
+
+1. Without E4: the weighted Chebyshev-error integral `J` of the
+   Chebyshev-error note satisfies `J(x) < 0` for `1 < x <= e^62`.
+2. With E4: `J(x) < 0` for `1 < x <= e^83`.
+3. With E4: `g(t) < 0` for `40 <= t <= 58`, hence on `0 < t <= 58` together
+   with the existing certificates.
+
+These are finite ranges. E4 slows the growth of the unverified tail from
+`e^{t/2}` to `e^{3t/8}`; it does not remove it, and it does not imply RH.
+
 ## What does Lean currently certify?
 
 `RhCertificates.tangent_negative` checks this arithmetic implication:

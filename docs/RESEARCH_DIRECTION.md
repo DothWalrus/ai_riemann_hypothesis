@@ -110,6 +110,19 @@ they are expected to follow from the certified sign of `g`, which is not yet
 written down. The open problem is the one already recorded in the zero-tail
 and Chebyshev-error notes: control of `g(t)` uniformly for unbounded `t`.
 
+## A zero-free half-plane does not close the gap
+
+[The conditional note](../research/notes/quasi-rh-consequences.txt) records
+what follows if `zeta(s) != 0` for `Re s > 7/8` is accepted as an external
+input (it has not been verified here). The certified sign range of `g` grows
+from `t <= 40` to `t <= 58`, and that of `J` to `x <= e^83`. With any growth
+exponent `b_0 > 0` the unverified tail `A(H) e^{b_0 t}` eventually overtakes
+the bounded contribution of the verified zeros, so what this kind of
+certificate can reach is finite, of order `(1/b_0) log(1/A(H))` at most.
+That is a limit of the method, not a claim about the sign of `g` beyond the
+certified range. The obstruction recorded in the zero-tail note is unchanged
+in kind.
+
 ## Approaches already known to be insufficient
 
 - **Positive weights alone.** Some prime-side terms push `g` upward. Assigning
