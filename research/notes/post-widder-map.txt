@@ -1,0 +1,360 @@
+What the Laplace hierarchy measures: a map in the (order, parameter) plane
+=========================================================================
+Research batch, 2026-11-11. Continues laplace-second-order.txt, whose
+notation, formulas (1.1)-(1.5), inputs E1-E3 and constants T2, S are
+used without repetition.
+
+Status by item (see CONTRIBUTING.md for the vocabulary):
+
+  Section 1  identity                 WRITTEN ARGUMENT, standard
+  Section 2  Lemma D                  WRITTEN ARGUMENT, conditional on E1-E3
+  Section 3  Theorem D, Corollary     WRITTEN ARGUMENT, unconditional
+  Section 4  Proposition E            WRITTEN ARGUMENT, unconditional
+  Section 5  the map                  consequences of the above
+  Section 6  order estimate           HEURISTIC, not proved; the entries
+                                      about a hypothetical zero are
+                                      illustrations, not evidence
+  Section 7  toy model                EXPLORATORY COMPUTATION
+
+Not formalized in Lean. Sections 1-4 have had one independent AI
+re-derivation, which found no error in them and whose corrections to
+Sections 5-8 are incorporated; that is not a substitute for maintainer
+review. No novelty claimed: Sections 1, 3 and 4 are classical tools
+(Post--Widder inversion and the Vivanti--Pringsheim theorem) applied
+to L.
+
+THIS IS NOT A PROOF OF RH AND CONTAINS NO NEW INFORMATION ABOUT ZEROS.
+Its purpose is to say precisely what the complete-monotonicity route of
+docs/RESEARCH_DIRECTION.md would have to prove, and where.
+
+0. Summary
+----------
+
+Write, for an integer n >= 0 and real w > 0,
+
+  c_n(w) = (-1)^n w^(n+1) L^(n)(w) / n!.
+
+Complete monotonicity of L is "c_n(w) >= 0 for all n and all w > 0".
+
+  (i)   For w > 1/2, c_n(w) is the average of -g against a Gamma
+        probability density with mean (n+1)/w and variance (n+1)/w^2.
+        The hierarchy is the pointwise sign of g seen through a
+        smoothing window; it is not a separate route.
+
+  (ii)  Given E1-E3, c_n(w) > 0 whenever w <= 9*10^24 and the window
+        variance (n+1)/w^2 exceeds 8*T2 (standard deviation above
+        3.45*10^-6). These inequalities hold whatever the zeros above
+        the verified height do.
+
+  (iii) Unconditionally, a zero rho_0 = 1/2 + b + i a with b > 0 forces
+        c_n(w) < 0 for infinitely many n at EVERY real
+        w > w*(rho_0) = (a^2 + b^2)/(2b). Below the least such
+        threshold, c_n(w) tends to a positive constant as n grows.
+
+  (iv)  Hence RH is equivalent to eventual sign-regularity at an
+        unbounded set of w. By E1 the least threshold exceeds 9*10^24,
+        and a heuristic count puts the first forced violation at orders
+        of about 4*10^27 or more.
+
+1. The hierarchy is a Gamma average of -g
+-----------------------------------------
+
+For w > 1/2 the transform recalled in laplace-moment-audit.txt is
+
+  L(w) = int_0^infinity [-g(t)] e^(-w t) dt,
+
+absolutely convergent because |g(t)| <= C (e^(t/2) + 1) unconditionally
+(zero-tail.txt, Section 2). Differentiating n times under the integral,
+
+  c_n(w) = int_0^infinity [-g(t)] p_{n,w}(t) dt,
+  p_{n,w}(t) = w^(n+1) t^n e^(-w t) / n!,                     (w > 1/2).
+
+p_{n,w} is the Gamma density with shape n+1 and rate w: total mass 1,
+mean t_c = (n+1)/w, variance (n+1)/w^2 = t_c/w. Thus
+
+  c_n(w) = E[-g(T)],   T ~ Gamma(n+1, w),   w > 1/2.                  (1.a)
+
+Consistency with the zero side: for real tau,
+E[2(1-cos(tau T))/tau^2] = (2/tau^2)[1 - Re (1 - i tau/w)^-(n+1)],
+which is the on-line term of formula (1.1) multiplied by w^(n+1)/n!.
+
+Post--Widder inversion. Let n -> infinity with (n+1)/w = t fixed. The
+window narrows (relative width (n+1)^(-1/2)) and, g being continuous
+with at most exponential growth, c_n((n+1)/t) -> -g(t). So
+
+  c_n(w) >= 0 for all n and all w > 1/2   <=>   g(t) <= 0 for all t > 0.
+
+("<=" is (1.a); "=>" is the limit.) This recovers the equivalence of
+laplace-moment-audit.txt, Section 6, without Bernstein's theorem, and
+shows which inequality carries which information: c_n(w) tests g near
+t = (n+1)/w at resolution sqrt(t/w).
+
+For 0 < w <= 1/2 the integral need not converge unconditionally, so
+there c_n(w) is not asserted to be an average of g. It is still defined
+through L and (1.1), which is all that Sections 2-4 use.
+
+2. Lemma D: what finite verification decides
+--------------------------------------------
+
+For a zero rho with Im rho = a > 0 and Re rho = 1/2 + b, the two poles
+of its term in (1.1) are at w' = +-p, p = b + i a (up to the labelling
+of gamma), and
+
+  |1 - p/w|^2 = 1 - 2b/w + (a^2+b^2)/w^2 = 1 - 2 b (w - w*)/w^2,
+  w* = w*(rho) = (a^2+b^2)/(2b)   (b > 0),                            (2.a)
+  |1 + p/w|^2 > 1.
+
+So for an off-line zero with b > 0, |1 - p/w| >= 1 exactly when
+w <= w*(rho); for its mirror zero (offset -b) both moduli exceed 1.
+Consequently, by (1.1) multiplied by w^(n+1)/n!, every off-line zero
+contributes to c_n(w) a term of modulus at most
+
+  (2/|gamma|^2) (1 + 1) <= 4/a^2    whenever w <= w*(rho) for the
+                                    quadruple it belongs to,          (2.b)
+
+for every n >= 0. On-line zeros contribute nonnegative terms by (1.3),
+at every height.
+
+Let w_crit be the infimum of w*(rho) over zeros with Re rho > 1/2
+(infinite under RH). Since 0 < b < 1/2 gives w*(rho) > a^2 + b^2, and
+off-line zeros have a > H by E1,
+
+  w_crit > H^2 = 9 * 10^24.                                           (2.c)
+
+LEMMA D. Assume E1-E3 and let 0 < w <= 9*10^24. Then c_0(w) > 0, and
+for every n >= 1 with
+
+  n + 1 > 8 T2 w^2        (8 T2 < 1.184 * 10^-11)
+
+one has c_n(w) > 0. In particular every order is positive for
+w <= 4.1 * 10^5.
+
+Proof. c_0 = w L = mu/w > 0. Let n >= 1, m = (n+1)/2 >= 1 and
+x = tau_1^2/w^2. Split the zeros into on-line and off-line. Among the
+on-line terms, all nonnegative, keep the one of tau_1 and use (1.3).
+All off-line zeros have a > H, and w <= H^2 < w_crit, so (2.b) bounds
+their total by 4 T2. Hence
+
+  c_n(w) >= (2/tau_1^2) [1 - (1+x)^(-m)] - 4 T2.
+
+Bernoulli's inequality (1+x)^m >= 1 + m x gives
+1 - (1+x)^(-m) >= m x/(1 + m x). If m x >= 1 the bracket is at least
+1/2 and c_n >= 1/tau_1^2 - 4 T2 > 0 (tau_1^2 < 200, 4 T2 < 6*10^-12).
+If m x < 1 the bracket is at least m x/2 = (n+1) tau_1^2/(4 w^2), so
+c_n >= (n+1)/(2 w^2) - 4 T2, positive under the hypothesis. Finally
+n + 1 >= 2 > 8 T2 w^2 for w <= 4.1*10^5.                             QED
+
+In the language of Section 1 (for w > 1/2): the hypothesis says the
+window variance (n+1)/w^2 exceeds 8 T2, for which a standard deviation
+above 3.45*10^-6 suffices. So, given E1-E3, every Gamma average of g
+with rate 1/2 < w <= 9*10^24 and standard deviation above 3.45*10^-6
+is negative. For a window centred at t the rate is t/(s.d.)^2, so the
+rate restriction only matters for centres beyond about 10^14.
+
+The proof shows more generally, with no hypothesis: if T_off denotes
+the sum of 1/(Im rho)^2 over off-line zeros with Im rho > 0, then
+c_n(w) > 0 whenever w <= w_crit and n + 1 > 8 T_off w^2.
+
+The constants needed (T2 < 1.48*10^-12, 14.13 < tau_1 < 14.14) are
+asserted by research/laplace_second_order.py; no new certificate is
+required.
+
+3. Theorem D: where an off-line zero must show itself
+-----------------------------------------------------
+
+L(w') = kappa'(w')/w'^2 is meromorphic in the plane. Its poles are
+w' = 0 (simple, residue M = xi''(1/2)/xi(1/2) > 0, because kappa' is
+odd and analytic at 0 with kappa'(w') ~ M w') and the points
+w' = rho - 1/2 over zeros rho of xi. On the positive real axis L is
+analytic, since xi(s) > 0 for real s.
+
+THEOREM D (unconditional). Suppose zeta has a zero rho_0 with
+Re rho_0 = 1/2 + b, b > 0, Im rho_0 = a. Then for every real
+w > w*(rho_0) = (a^2 + b^2)/(2 b) there are infinitely many n with
+c_n(w) < 0.
+
+Proof. Fix w > w*. The Taylor series of y -> L(w - y) at y = 0 is
+sum_n c_n(w) y^n / w^(n+1). Its radius of convergence R is the distance
+from w to the nearest pole of L. By (2.a) the pole b + i a is at
+distance less than w, so R < w. Suppose c_n(w) >= 0 for all n beyond
+some n_0. Removing the first n_0 terms (a polynomial) leaves a power
+series with nonnegative coefficients and the same radius R, so by the
+Vivanti--Pringsheim theorem the point y = R is a singularity of
+y -> L(w - y). But w - R lies in (0, w), on the positive real axis,
+where L is analytic. Contradiction.                                   QED
+
+COROLLARY. The following are equivalent.
+  (1) RH.
+  (2) c_n(w) > 0 for all n >= 0 and all real w > 0.
+  (3) There is an unbounded set of real w such that, for each w in it,
+      c_n(w) >= 0 for all sufficiently large n (how large may depend
+      on w).
+
+(1) => (2): under RH every zero is on the line, and (1.3) with
+termwise differentiation gives strict positivity for every w > 0.
+(2) => (3) is trivial. If RH fails, Theorem D produces a w* beyond
+which (3) is violated at every w.
+
+4. Proposition E: below the threshold the signs are eventually right
+--------------------------------------------------------------------
+
+PROPOSITION E (unconditional). For every real 0 < w < w_crit,
+
+  c_n(w) -> M = xi''(1/2)/xi(1/2) > 0   as n -> infinity.
+
+Proof. For an on-line zero the pole i tau is at distance
+sqrt(w^2+tau^2) > w from w. For an off-line zero, (2.a) gives distance
+greater than w because w < w_crit <= w*(rho); for its mirror the
+distance always exceeds w. The squared distance minus w^2 equals
+a^2 + b^2 - 2 b w >= a^2 - w, which tends to infinity along the zeros,
+so the minimum over all zeros is attained and exceeds w. Hence
+L(w - y) - M/(w - y) is analytic in a disc |y| < R' with R' > w, its
+Taylor coefficients are O(r^-n) for some r > w, and those of M/(w - y)
+are M/w^(n+1). Multiply by w^(n+1).                                  QED
+
+Proposition E gives only eventual positivity: it does not exclude
+finitely many negative c_n(w) at a given w < w_crit, and the threshold
+in n is not explicit. The boundary case w = w_crit is covered by
+neither statement. In Section 1's language, very wide windows at a
+fixed rate below w_crit see the mean value M of -g.
+
+5. The map
+----------
+
+Coordinates: order n >= 0 and parameter w > 0, or for w > 1/2 the
+window centre t = (n+1)/w and variance t/w.
+
+  A. DECIDED POSITIVE (Lemma D, given E1-E3):
+       w <= 9*10^24 and (n = 0 or n + 1 > 1.184*10^-11 w^2).
+     All orders for w <= 4.1*10^5. Independent of zeros above H.
+
+  B. DECIDED POSITIVE at every w > 0 (laplace-second-order.txt):
+       n = 2, and separately the first Hankel determinant (which is not
+       a point of this plane). n = 0 and n = 1 are in ghs-first-ratio.txt.
+     For other fixed n the same patching is expected to work and has
+     not been carried out.
+
+  C. NOT DECIDED by these notes:
+       narrow windows, n + 1 <= 1.184*10^-11 w^2, at
+       4.1*10^5 < w <= 9*10^24, other than n <= 2.
+     Proposition E applies (c_n -> M at each such w), so no zero can
+     force infinitely many violations here; finitely many are not
+     excluded. For window centres t <= 40 the pointwise bound g < 0 on
+     (0, 40] (zero-tail.txt) makes positivity very plausible, but
+     turning that into a statement about c_n needs a tail estimate
+     that has not been written.
+
+  D. WHERE A COUNTEREXAMPLE IS FORCED TO APPEAR (Theorem D + (2.c)):
+       w > 9*10^24.
+     A zero at height a with offset b forces infinitely many negative
+     c_n(w) at every w > (a^2+b^2)/(2b) > a^2 + b^2. Note these
+     violations occur at arbitrarily large n, that is, at arbitrarily
+     WIDE windows: at rates above the threshold the window average of
+     the off-line oscillation grows instead of decaying.
+
+What this does and does not say about "bounded ranges". Region A shows
+that the inequalities with w <= H^2 and variance above 8 T2 hold
+irrespective of zeros above H, so they cannot detect such zeros; with a
+larger verified height the same holds on a larger range. For a bounded
+range of n at all w the analogous statement is proved only for n <= 2.
+
+6. How high must the order be in region D? (heuristic)
+------------------------------------------------------
+
+Not proved. By (1.1) and (2.a) the off-line pair's oscillating part of
+c_n(w) has modulus
+
+  (2/|p|^2) (1 - 2 b (w - w*)/w^2)^(-(n+1)/2)
+     ~ (2/a^2) exp( b t (1 - w*/w) ),      t = (n+1)/w,
+
+which grows only for w > w* and at the reduced rate b (1 - w*/w), not
+b. (At w = w* it does not grow at all.) It must reach the main term,
+of size M = 0.0462, so one needs roughly
+
+  n ~ w^2 log(M a^2/2) / (b (w - w*)),
+
+smallest at w = 2 w*, where n_min ~ 4 w* log(M a^2 / 2)/b. For a
+hypothetical zero just above H:
+
+     b        w*       w = 2 w*     n_min
+    0.50   9.0e24      1.8e25      3.9e27
+    0.10   4.5e25      9.0e25      9.7e28
+    0.01   4.5e26      9.0e26      9.7e30
+
+(output of research/postwidder_toy.py; b < 1/2 always, so the first
+row is a limiting case). These numbers describe the formula. They are
+not evidence about any zero. In the toy model of Section 7 the same
+estimate predicts the observed first violation within a factor 1.5.
+
+7. Toy model (exploratory)
+--------------------------
+
+research/postwidder_toy.py evaluates c_n(w) exactly, in complex floats,
+for an artificial L_toy: the first five true ordinates on the line plus
+one invented off-line quadruple at 1/2 +- 0.4 +- 40 i. Then
+w* = 2000.2 and M_toy = 0.02424. Observed, scanning n <= 40 w:
+
+   w/w*    first n with c_n < 0    estimate of Section 6
+   0.25         none found
+   0.50         none found
+   0.90         none found
+   0.99         none found
+   1.01         none found               1.5e6 (beyond the scan)
+   1.10         none found               1.8e5 (beyond the scan)
+   1.50          62643                   66700
+   2.00          51491                   59300
+   5.00          79958                   92600
+  20.00         213290                  312000
+
+Below the threshold c_n(w) at n = w^2 agrees with M_toy to 0.5%, as
+Proposition E predicts; "none found" below the threshold is an
+observation about this toy, not a consequence of Proposition E. Above
+the threshold the first violation sits at order tens of thousands
+although the offending zero has height 40, and none of the first 2000
+orders is negative at w = 2 w*.
+
+  python3 research/postwidder_toy.py
+  python3 -m unittest discover -s research -p 'test_postwidder*.py' -v
+
+8. Consequences for the programme
+---------------------------------
+
+(1) "Route 2" of docs/RESEARCH_DIRECTION.md (complete monotonicity,
+moment matrices) is "route 1" (the sign of g) viewed through Gamma
+windows, by Section 1. Region A is the part of the hierarchy that
+finite verification already settles, and by construction it is blind
+to zeros above H. The author's opinion, not a theorem: the family
+contains no inequality that is both outside region A and easier than
+the corresponding statement about g, and the same is to be expected of
+the higher Hankel determinants, which are positivity statements for
+the same measure.
+
+(2) Numerical experiments on c_n(w) inside region A cannot be evidence
+for or against RH: their outcome is already determined. Experiments in
+region C at reachable sizes have window centres t = (n+1)/w far below
+40, where g < 0 is already certified pointwise, so they are not
+expected to be informative either; that expectation is not a proof.
+
+(3) What remains open is unchanged and is the statement recorded in
+zero-tail.txt, Section 4, and chebyshev-error.txt: control of g(t), or
+of the prime sum, uniformly for unbounded t. In the present language
+two things are missing at once: windows narrower than 3.45*10^-6 at
+large centres, and rates beyond H^2. Any proof would need an input
+that distinguishes zeros above H, which none of the tools in this
+repository does.
+
+(4) Possible bounded follow-ups, in decreasing order of value:
+  * Maintainer review of Sections 2-4.
+  * Lean: Theorem D reduces to Pringsheim's theorem plus a statement
+    about poles of xi'/xi; it is a cleaner formalization target than the
+    interval certificates, with all number theory isolated in the
+    hypothesis "rho_0 is a zero".
+  * Write the tail estimate that would settle region C for window
+    centres t <= 40.
+  * Sharpen region A using all verified zeros instead of tau_1 alone.
+    This changes constants, not the picture.
+  * Not recommended: proving further fixed orders in region B.
+
+Sources: Widder, The Laplace Transform (1941), for Post--Widder
+inversion; Titchmarsh, The Theory of Functions, section 7.21, for the
+Vivanti--Pringsheim theorem; the sources of laplace-second-order.txt.
