@@ -1,5 +1,26 @@
 # Agent workflow
 
+## Research workspace and outputs
+
+This repository is the canonical workspace for all future research. Run research
+commands from this root and set every delegated agent's working directory to
+this repository explicitly. Do not save new work in an old workspace or staging
+directory. Reuse the pinned Lean project in `formalization/`.
+
+Save substantive agent and synthesis reports in `research/reports/`, using the
+format described in its [README](research/reports/README.md). Keep Lean source
+in `formalization/RhCertificates/` and build/axiom evidence in
+`formalization/evidence/`. Save research scripts and mathematical notes under
+`research/`. All these paths are relative to this repository.
+
+Read the [Lean verification policy](research/lean-verification-policy.txt).
+Observe the user's separate research schedule and allowance restrictions;
+changing the workspace does not authorize extra research or spending. Keep
+account balances, reset timestamps, and private session metadata out of public
+research reports.
+
+## Git and verification
+
 The maintainer authorizes daily automatic Git pull, commits, and push for
 completed project work. Use the existing `origin` remote and `main` branch. Follow
 [the sync procedure](docs/SYNC.md); stop and report conflicts rather than

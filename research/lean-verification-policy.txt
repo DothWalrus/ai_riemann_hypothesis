@@ -1,0 +1,78 @@
+Lean verification requirement for the Riemann-hypothesis investigation
+====================================================================
+Requested by the user on 2026-11-11. Applies to subsequent reported results.
+
+Every substantive mathematical result should have a Lean formalization
+attempt accompanying its written argument. Preserve exact statements and
+hypotheses. Keep each result's status explicit:
+
+  KERNEL-CHECKED: built successfully with a pinned Lean/mathlib version,
+  with no unfinished proofs or additional unproved mathematical assumptions.
+
+  CONDITIONAL KERNEL-CHECKED: built successfully but depends on explicitly
+  stated mathematical hypotheses not yet formalized/proved. Report this
+  as an implication from those hypotheses, not a certified unconditional
+  theorem about the Riemann zeta function.
+
+  DRAFT/NOT CHECKED: source exists but was not successfully compiled.
+
+  NOT YET FORMALIZED: no Lean source currently certifies this result.
+
+For each certificate preserve:
+- the source theorem, its exact hypotheses and intended mathematical meaning;
+- lean-toolchain, pinned mathlib revision, and dependency/build metadata;
+- the exact build/replay command and success log;
+- #print axioms output and a review of all nonstandard dependencies;
+- a short plain-language explanation of what was and was not verified.
+
+Do not use sorry/admit or introduce an axiom asserting the desired result.
+Do not silently assume RH, real-zero support, interval bounds, a source
+theorem, or correctness of external calculations. Standard Lean/mathlib
+logical foundations must also be disclosed by the axiom listing; their
+presence is distinct from adding unproved mathematical claims.
+
+Numerical certificates need a proved bridge from the computed data to
+the analytic claim. Merely loading Python PASS output or formalizing the
+last rational comparison does not certify the full analytic statement.
+Prefer an exact-arithmetic checker with a correctness theorem and explicit
+transcendental/tail bounds. Disclose any additional computation/trust path.
+
+First target
+------------
+Formalize the startup lemma before attempting the full 743-cell zero-tail
+certificate. The startup argument is in ns_startup_lemma.md and its current
+Python control is ns_startup_certificate.py. Split it into:
+1. an elementary real-variable tangent/chord lemma with explicit hypotheses;
+2. the analytic facts establishing those hypotheses for the actual g/H;
+3. exact certified elementary bounds on the constants and derivatives.
+Step 1 alone must be labeled conditional; all three are needed for an
+unconditional Lean certificate of the startup sign result.
+
+Current status
+--------------
+On 2026-11-11 the user explicitly authorized installing the tools now.
+The project-local Lean/Mathlib environment is in formalization/; use
+./formalization/lakew from the repository root. Its setup theorem
+RhCertificates.tangent_negative is a kernel-checked arithmetic implication
+whose application to the actual screw function remains conditional.
+See docs/LEAN_VERIFICATION.md for versions, commands, and scope.
+The existing analytic results and Python interval certificates do not yet
+have complete Lean formalizations. Human/agent audits remain separately
+labeled. Subsequent proof research still follows the scheduled allowance
+window, without paid/API compute or resets.
+
+Installation authorization
+--------------------------
+The user explicitly authorized the agents to install the needed Lean
+tools as necessary. During an eligible research run, check for reusable
+installations first; if absent, install elan, a pinned Lean 4 toolchain
+(including Lake), and a matching pinned Mathlib dependency from official
+sources. No additional user choice is needed for ordinary setup decisions.
+Prefer project-local configuration and caches; preserve existing projects
+and toolchains, and avoid unnecessary system-wide or shell-profile changes.
+VS Code is optional and need not be installed for command-line checking.
+Honor sandbox/network approval requirements; this authorization does not
+bypass them. No paid services, purchased credits, API billing, quota resets,
+or paid external compute are authorized. Record installed versions and
+validate the setup by compiling a small Mathlib theorem and inspecting its
+axiom report before using it to certify any research result.
