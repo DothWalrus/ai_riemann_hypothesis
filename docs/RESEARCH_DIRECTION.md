@@ -55,11 +55,34 @@ Its nonnegativity therefore requires the lower bound
 c_3\ge\frac{v^2}{\mu}-\frac{2\mu}{w^2}.
 \]
 
-GHS gives an upper bound on `c_3`, not this lower bound. A useful contribution
-would obtain one of these quantitative lower bounds from the explicit theta
-kernel, with all hypotheses established for that kernel. Even a proof of this
-one determinant inequality would be partial progress in this program; the
-entire required hierarchy would remain to be proved.
+GHS gives an upper bound on `c_3`, not this lower bound.
+
+**Update, 2026-11-11.** [The second-order note](../research/notes/laplace-second-order.txt)
+gives a written argument, awaiting independent review, for both lower bounds
+on all of `w > 0`. It does not use the theta kernel. It uses published zero
+verification for small `w` and the explicit formula for large `w`. That is
+also its weakness: the argument is blind to zeros above the verified height,
+so these two inequalities turn out to carry no information about RH beyond
+the verification itself. Treat them as settled bookkeeping pending review,
+not as partial progress toward the hierarchy.
+
+## The question that replaces it
+
+The same note shows every derivative sign `(-1)^n L^{(n)}(w) > 0` on the
+bounded range `0 < w <= 10^5`, while each fixed order is known to hold for
+`w` beyond a threshold that grows roughly linearly with `n`. A fixed order can
+therefore be expected to follow by patching the two regimes. The unresolved
+content of this route is uniformity in `n`:
+
+- For which pairs `(n, w)` does neither the verified zeros nor the explicit
+  formula decide the sign of `(-1)^n L^{(n)}(w)`? High orders at the point `w`
+  are sensitive to primes once `n` is comparable to `w log 2`.
+- Is there any inequality in the hierarchy whose proof would be forced to use
+  zeros above the verified height? An approach that cannot name one is
+  reproducing finite verification.
+
+A useful contribution addresses one of these, or reviews the second-order
+note. Proving one more fixed order by the same patching is not useful.
 
 ## Approaches already known to be insufficient
 
