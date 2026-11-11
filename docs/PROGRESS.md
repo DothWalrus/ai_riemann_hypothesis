@@ -83,6 +83,83 @@ Lean here, and first-order monotonicity is insufficient for the proposed global
 proof route. The xi-specific potential property is supplied by Newman's
 published theorem; this project does not reprove that entire theorem.
 
+### Second-order inequality and first Hankel determinant
+
+Status: **written argument with interval-checked constants; not yet
+independently reviewed; not formalized in Lean; no novelty claimed.**
+
+[The second-order note](../research/notes/laplace-second-order.txt) argues that,
+given Platt–Trudgian's zero verification, the Bellotti–Wong counting bound,
+and the location of the first zero,
+
+\[
+L''(w)>0,\qquad L(w)L''(w)-[L'(w)]^2>0\qquad\text{for every } w>0 .
+\]
+
+These are the two lower bounds on `c_3` that the research direction named as
+the next target. For `0 < w <= 20` the zero expansion of `L` is used: verified
+zeros contribute with the right sign and the unverified tail is smaller by a
+factor of more than `10^5`. For `w >= 20` the explicit formula with elementary
+digamma and prime-sum bounds is used. The same zero-side estimate gives every
+derivative sign `(-1)^n L^{(n)} > 0` on `0 < w <= 10^5`.
+
+`research/laplace_second_order.py` checks the constants with outward-rounded
+intervals. `research/laplace_numeric_crosscheck.py` is a separate exploratory
+floating-point comparison that uses the theta kernel and no zero data.
+
+**This result does not bring the programme closer to RH.** The argument never
+examines zeros above height `3 * 10^12`, so these inequalities would hold
+whether or not RH fails there. It shows that a fixed finite number of the
+required inequalities follows from finite verification; the open problem is
+a statement uniform in the derivative order.
+
+### What the Laplace hierarchy measures
+
+Status: **written arguments with one independent AI re-derivation, awaiting
+maintainer review; the order estimate is heuristic; the toy-model computation
+is exploratory; no novelty claimed.**
+
+[The map note](../research/notes/post-widder-map.txt) records three facts about
+the normalized derivatives `c_n(w) = (-1)^n w^(n+1) L^(n)(w)/n!`:
+
+1. For `w > 1/2`, `c_n(w)` is a Gamma-window average of `-g` (Post–Widder),
+   so complete monotonicity of `L` is the pointwise sign of `g` at finite
+   resolution.
+2. Given the external inputs of the second-order note, `c_n(w) > 0` whenever
+   `w <= 9 * 10^24` and `n + 1 > 1.184 * 10^-11 w^2`. These inequalities hold
+   whatever the zeros above the verified height do.
+3. Unconditionally, an off-line zero `1/2 + b + ia` forces infinitely many
+   negative `c_n(w)` at every `w > (a^2+b^2)/(2b)`; below the least such
+   threshold `c_n(w)` tends to a positive constant. RH is therefore
+   equivalent to eventual sign-regularity at an unbounded set of `w`.
+
+`research/postwidder_toy.py` illustrates item 3 on an artificial function
+with one invented off-line zero. It makes no statement about zeta.
+
+These results explain why the route is hard; they do not advance it.
+
+### Conditional consequences of a zero-free half-plane `Re s > 7/8`
+
+Status: **written argument with interval-checked constants. Items 2 and 3
+are conditional on an external input that this repository has not
+verified.** No novelty claimed.
+
+The external input (called E4 in
+[the conditional note](../research/notes/quasi-rh-consequences.txt)) is the
+statement `zeta(s) != 0` for `Re s > 7/8`, from an OpenAI preprint dated
+30 September 2026. The `openai/math` repository lists a Lean declaration for
+it. That proof was not built or checked here, and no peer review is known to
+us. It is used as a cited hypothesis, like the published zero verification.
+
+1. Without E4: the weighted Chebyshev-error integral `J` of the
+   Chebyshev-error note satisfies `J(x) < 0` for `1 < x <= e^62`.
+2. With E4: `J(x) < 0` for `1 < x <= e^83`.
+3. With E4: `g(t) < 0` for `40 <= t <= 58`, hence on `0 < t <= 58` together
+   with the existing certificates.
+
+These are finite ranges. E4 slows the growth of the unverified tail from
+`e^{t/2}` to `e^{3t/8}`; it does not remove it, and it does not imply RH.
+
 ## What does Lean currently certify?
 
 `RhCertificates.tangent_negative` checks this arithmetic implication:
@@ -111,10 +188,11 @@ Consequently the full startup result and finite zero-tail certificate are
 ## The remaining gap
 
 The global sign of `g` remains unproved. The current analytic route needs
-higher-order inequalities for `L`, or corresponding transformed moment-matrix
-positivity. GHS provides an upper bound on a third derivative, whereas the next
-conditions need a quantitative lower bound. See
-[RESEARCH_DIRECTION.md](RESEARCH_DIRECTION.md).
+every higher-order inequality for `L`, or the corresponding transformed
+moment-matrix positivity for every size. The second-order note indicates that
+any single fixed order is likely reachable from finite zero verification and
+therefore uninformative; the missing ingredient is control that is uniform in
+the order. See [RESEARCH_DIRECTION.md](RESEARCH_DIRECTION.md).
 
 ## Primary references
 

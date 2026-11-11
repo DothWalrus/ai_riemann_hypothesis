@@ -55,11 +55,73 @@ Its nonnegativity therefore requires the lower bound
 c_3\ge\frac{v^2}{\mu}-\frac{2\mu}{w^2}.
 \]
 
-GHS gives an upper bound on `c_3`, not this lower bound. A useful contribution
-would obtain one of these quantitative lower bounds from the explicit theta
-kernel, with all hypotheses established for that kernel. Even a proof of this
-one determinant inequality would be partial progress in this program; the
-entire required hierarchy would remain to be proved.
+GHS gives an upper bound on `c_3`, not this lower bound.
+
+**Update, 2026-11-11.** [The second-order note](../research/notes/laplace-second-order.txt)
+gives a written argument, awaiting independent review, for both lower bounds
+on all of `w > 0`. It does not use the theta kernel. It uses published zero
+verification for small `w` and the explicit formula for large `w`. That is
+also its weakness: the argument is blind to zeros above the verified height,
+so these two inequalities turn out to carry no information about RH beyond
+the verification itself. Treat them as settled bookkeeping pending review,
+not as partial progress toward the hierarchy.
+
+## The question that replaces it
+
+The same note shows every derivative sign `(-1)^n L^{(n)}(w) > 0` on the
+bounded range `0 < w <= 10^5`, while each fixed order is known to hold for
+`w` beyond a threshold that grows roughly linearly with `n`. A fixed order can
+therefore be expected to follow by patching the two regimes. The unresolved
+content of this route is uniformity in `n`:
+
+- For which pairs `(n, w)` does neither the verified zeros nor the explicit
+  formula decide the sign of `(-1)^n L^{(n)}(w)`? High orders at the point `w`
+  are sensitive to primes once `n` is comparable to `w log 2`.
+- Is there any inequality in the hierarchy whose proof would be forced to use
+  zeros above the verified height? An approach that cannot name one is
+  reproducing finite verification.
+
+A useful contribution addresses one of these, or reviews the second-order
+note. Proving one more fixed order by the same patching is not useful.
+
+**Update, 2026-11-11: both questions now have written answers, awaiting
+review.** See [the map note](../research/notes/post-widder-map.txt).
+
+- For `w > 1/2` the normalized derivative
+  `c_n(w) = (-1)^n w^(n+1) L^(n)(w)/n!` is the average of `-g` against a
+  Gamma density centred at `t = (n+1)/w` with standard deviation
+  `sqrt(t/w)`. The hierarchy is the pointwise sign of `g` seen through a
+  smoothing window; it is not an independent route.
+- Given the same external inputs, `c_n(w) > 0` whenever `w <= 9 * 10^24` and
+  the window's standard deviation exceeds `3.45 * 10^-6`. That is what finite
+  verification decides, and it is blind to zeros above the verified height.
+- Unconditionally, a zero at `1/2 + b + ia` with `b > 0` forces
+  `c_n(w) < 0` for infinitely many `n` at every `w > (a^2+b^2)/(2b)`. Below
+  the least such threshold `c_n(w)` tends to a positive constant, which
+  excludes infinitely many violations but not finitely many. With the
+  verified height the least threshold exceeds `9 * 10^24`.
+- Heuristically, the first forced violation would sit at derivative order
+  about `4 * 10^27` or higher.
+
+Consequently experiments inside the decided region cannot be evidence about
+RH, and route 2 above reduces to route 1 at fine resolution. Narrow windows
+at `w > 4.1 * 10^5` are not decided by the note; for window centres below 40
+they are expected to follow from the certified sign of `g`, which is not yet
+written down. The open problem is the one already recorded in the zero-tail
+and Chebyshev-error notes: control of `g(t)` uniformly for unbounded `t`.
+
+## A zero-free half-plane does not close the gap
+
+[The conditional note](../research/notes/quasi-rh-consequences.txt) records
+what follows if `zeta(s) != 0` for `Re s > 7/8` is accepted as an external
+input (it has not been verified here). The certified sign range of `g` grows
+from `t <= 40` to `t <= 58`, and that of `J` to `x <= e^83`. With any growth
+exponent `b_0 > 0` the unverified tail `A(H) e^{b_0 t}` eventually overtakes
+the bounded contribution of the verified zeros, so what this kind of
+certificate can reach is finite, of order `(1/b_0) log(1/A(H))` at most.
+That is a limit of the method, not a claim about the sign of `g` beyond the
+certified range. The obstruction recorded in the zero-tail note is unchanged
+in kind.
 
 ## Approaches already known to be insufficient
 

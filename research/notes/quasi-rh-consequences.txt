@@ -1,0 +1,197 @@
+Consequences of a zero-free half-plane Re(s) > 7/8 for this repository
+======================================================================
+Research batch, 2026-11-11.
+
+Status: WRITTEN ARGUMENT with interval-checked constants. Everything
+that uses the exponent 3/8, namely Proposition 1(c) and Sections 2-4,
+is CONDITIONAL ON AN EXTERNAL INPUT (E4) THAT THIS REPOSITORY HAS NOT
+VERIFIED. Proposition 1(b) does not use E4. Not formalized in Lean
+here. One independent AI re-derivation found no error in the
+mathematics; its corrections to wording and tests are incorporated.
+That is not maintainer review. No novelty claimed: every step is a
+substitution of a smaller growth exponent into estimates already in
+zero-tail.txt and chebyshev-error.txt.
+
+FINITE RANGES ONLY. THIS IS NOT A PROOF OF RH. E4 does not imply RH,
+and nothing below narrows the gap between E4 and RH.
+
+0. The external input and its verification level
+------------------------------------------------
+
+  E4  zeta(s) != 0 whenever Re(s) > 7/8.
+
+Source. "The Quasi-Riemann Hypothesis: A Zero-Free Half-Plane
+Re(s)>7/8", author given as OpenAI, dated 30 September 2026,
+Theorem 1.1:
+https://github.com/openai/math/blob/main/preprints/The-Quasi-Riemann-Hypothesis-September-30-2026/paper.pdf
+The theorem is stated for all finite-order Hecke L-functions over
+Q(sqrt(-3)) and all Dirichlet L-functions; only the zeta case is used
+here. The paper states that RH remains open.
+
+What was observed in the openai/math repository on 2026-11-11:
+  * its README says the manuscripts were produced by an unnamed
+    internal model, calls them "raw research data", and warns that
+    unformalized results "could have issues";
+  * lean/formalization.yaml ("papers with a formalized main result")
+    lists this paper, with declaration
+    OAI.riemannZeta_ne_zero_of_seven_eighths_lt_re in
+    OAI/NumberTheory/DirichletL/Nonvanishing.lean, statement
+      theorem riemannZeta_ne_zero_of_seven_eighths_lt_re
+          {s : C} (hs : (7 / 8 : R) < s.re) : riemannZeta s != 0
+    (ASCII transcription);
+  * the checking configuration
+    lean/ComparatorChallenges/QuasiRiemannHypothesis.json compares it
+    with a statement file that imports only Mathlib and permits the
+    axioms propext, Quot.sound, Classical.choice.
+
+What was NOT done here: the Lean proof was not built, the checker was
+not run, the proof files were not read, and only the first 8 pages of
+the paper (about 195 pages) were read. No peer review or independent
+compilation is known to the author of this note. E4 is therefore used
+exactly as E1-E3 are used: as a cited hypothesis. If E4 is withdrawn
+or corrected, Proposition 1(c) and Sections 2-4 fall with it, and
+Proposition 1(b) stands.
+
+How E4 enters. Zeros of zeta are symmetric under rho -> 1 - rho, so
+E4 gives 1/8 <= Re rho <= 7/8 for every nontrivial zero. In the
+notation of zero-tail.txt (gamma a zero of xi(1/2 - i z)),
+
+  |Im gamma| = |Re rho - 1/2| <= 3/8,
+  |exp(-i gamma t) - 1| <= exp(3t/8) + 1        (t >= 0),
+
+in place of the unconditional exp(t/2) + 1. Every statement below is
+this replacement.
+
+1. A one-sided bound for g and the sign of J
+--------------------------------------------
+
+Let A(H) < 2.959408 * 10^-12 be the tail constant of zero-tail.txt
+(from E1, E2). Inequality (2) of that note, with the trivial bound
+D_m >= 0, reads for every t >= 0:
+
+  g(t) <= A(H) (exp(b t) + 1),    b = 1/2 unconditionally,
+                                  b = 3/8 under E4.                  (1.a)
+
+Recall from chebyshev-error.txt, formula (B), for x >= 1:
+
+  g(log x) = J(x) + (C - 1) log x - K + R(x),   R(x) > 0,
+
+with C = 2.68609..., K = 0.29933... . (Formula (B) is re-checked in
+floats in research/test_zero_tail_seven_eighths.py: J is integrated
+from its definition by quadrature between prime powers and compared
+with g from the prime-side code, with no zero data.) Hence for x >= 2,
+t = log x:
+
+  J(x) <= -h(t),   h(t) = (C - 1) t - K - A(H)(exp(b t) + 1).        (1.b)
+
+h is concave in t (linear minus convex), so h > 0 on an interval as
+soon as it is positive at both ends. For 1 < x <= 2 the note already
+gives J(x) = -4 sqrt(x) + log x + 4 < 0.
+
+PROPOSITION 1.
+  (b) Given E1, E2:      J(x) < 0 for 1 < x <= e^62  (about 8*10^26).
+  (c) Given E1, E2, E4:  J(x) < 0 for 1 < x <= e^83  (about 1*10^36).
+
+Proof. With C > 2.686 and K <= 9/25 (first term plus integral), the
+script asserts h(log 2) > 0, h(62) > 0 for b = 1/2, and h(83) > 0 for
+b = 3/8.                                                             QED
+
+Part (b) needs no zero ordinates at all and is not conditional on E4.
+Previously available: chebyshev-error.txt records 1 < x <= 100, and
+its transfer argument applied to g < 0 on (0, 40] (zero-tail.txt)
+gives 1 < x <= e^40 with the five zero enclosures. So (b) extends
+e^40 to e^62 and drops the enclosures. Target (T) itself,
+"J(x) <= 0 for all large x", is equivalent to RH and is not touched.
+
+62 and 83 are the largest integers this argument yields: with A(H)
+replaced by its certified upper bound, the minorant of h used by the
+script is negative at t = 63 (b = 1/2) and at t = 84 (b = 3/8); in
+floats its roots are near 62.40 and 83.99. This is a statement about
+the bound, not about the sign of J beyond those points.
+
+2. The sign of g on a longer interval
+-------------------------------------
+
+PROPOSITION 2. Given E1, E2, the five LMFDB zero enclosures, and E4:
+
+  g(t) < 0 for 40 <= t <= 58.
+
+With ns_startup_lemma.md and zero-tail.txt this gives g(t) < 0 for
+0 < t <= 58, that is, g(log x) < 0 for 1 < x <= e^58 (about 1.5*10^25).
+
+Proof. Exactly the certificate of zero-tail.txt, Section 3, with the
+tail envelope (exp(3b/8) + 1) A(H) on each cell [a, b] in place of
+(exp(b/2) + 1) A(H). The script accepts 388 cells; the smallest
+certified margin is 4.0*10^-6.                                       QED
+
+Why 58 and not further. Certified: at t = 58 the unconditional
+envelope (11.6) exceeds the largest possible five-zero deficit
+4 sum 1/tau_j^2 (0.0435), so Proposition 2 is out of reach of this
+method without E4. Exploratory float estimates, not certified: with
+five zeros D_5(t) falls below the envelope at t = 58.2, where both are
+about 9*10^-3; adding the next fifteen zeros would move that point
+only to about 60, because the envelope grows by a factor e^(3/8) per
+unit of t; without E4 the same method stops near t = 42.7; and the
+point where the largest possible five-zero deficit equals the
+envelope, an absolute ceiling for the five-zero method, moves from
+t = 46.8 to t = 62.4.
+
+A remark on the method, not on g. With a growth exponent b_0 the
+envelope A(H) exp(b_0 t) overtakes any bounded deficit at some finite
+t, of order (1/b_0) log(1/A(H)) at most (about 71 for b_0 = 3/8, where
+the method actually reaches 58). So what this kind of certificate can
+reach is finite for every b_0 > 0, and it may stop much earlier,
+because the deficits D_m return arbitrarily close to zero
+(zero-tail.txt, Section 4). Nothing is claimed about the sign of g
+beyond the certified range. E4 changes the constant in the obstruction
+of zero-tail.txt, Section 4, not its nature.
+
+3. Bookkeeping for the Laplace notes
+------------------------------------
+
+Under E4:
+
+  * |g(t)| <= 4 S + A(H)(exp(3t/8) + 1) with S < 0.0828 (zeros below H
+    are real by E1 and contribute at most 4 S in absolute value; the
+    bound on S uses E2 and E3 as in laplace-second-order.txt). So the
+    Laplace integral of -g converges absolutely for w > 3/8. It equals
+    L(w) there by analytic continuation from w > 1/2: under E4 the
+    poles of L other than 0 have real part at most 3/8, so both sides
+    are analytic on Re w > 3/8. Hence the Gamma-average identity (1.a)
+    of post-widder-map.txt holds for w > 3/8 instead of w > 1/2.
+  * The detection threshold w*(rho) = (a^2 + b^2)/(2b) is decreasing in
+    b for 0 < b < a, so b <= 3/8 gives w*(rho) > (4/3) a^2 and
+    w_crit > (4/3) H^2 = 1.2 * 10^25 (was 9 * 10^24). Lemma D of that
+    note then holds for w <= 1.2 * 10^25.
+  * Lemmas A, B, C and the Theorem of laplace-second-order.txt are
+    unchanged: they never used more than |Re rho - 1/2| < 1/2.
+
+None of this changes the conclusion of post-widder-map.txt, Section 8.
+
+4. What E4 does not give
+------------------------
+
+  * Not g <= 0 for all t, hence not RH. (1.a) with b = 3/8 still
+    allows positive excursions of size A(H) exp(3t/8).
+  * Not target (T). By chebyshev-error.txt, Section 2, an eventual
+    bound J(x) <= B_eps x^eps for EVERY eps > 0 is needed; (1.b) with
+    E4 gives the exponent 3/8, which is the same information as E4.
+  * No improvement of the smoothing scale in region A of
+    post-widder-map.txt, which depends on the zero count above H, not
+    on how far off the line those zeros may lie.
+
+Reproduction:
+
+  python3 research/zero_tail_seven_eighths.py
+      Expected final lines begin "PASS". Recorded output:
+      research/zero_tail_seven_eighths_result.txt.
+  python3 -m unittest discover -s research -p 'test_zero_tail_seven*.py' -v
+
+What a reviewer should check: that E4 is quoted correctly and used
+only through |Re rho - 1/2| <= 3/8; inequality (1.a) and the concavity
+argument; that the cell certificate bounds the envelope at the right
+end of each cell; and the status of E4 itself, which this repository
+cannot assess.
+
+Sources: the preprint and repository cited in Section 0; zero-tail.txt
+and chebyshev-error.txt and their sources.
