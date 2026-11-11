@@ -118,6 +118,11 @@ def main():
     slack_a = (2*floor_split/(tau_hi*tau_hi))/(4*t2)
     slack_c = main_c/loss_c
     assert slack_a.lo > 10**5 and slack_c.lo > 10**5
+    # Figures quoted in the note (only positivity is needed for the proof).
+    assert s_all.hi < D('0.0828')
+    assert margin_a.lo > D('1.8e-3')
+    assert margin_a_wide.lo > D('9e-11')
+    assert margin_c.lo > D('8.3e-6')
 
     # Lemma B (w >= W = 20, s = w+1/2 >= 20.5).
     # (i) Prime-sum bound: sum Lambda(n) log^j(n) n^-s <= 2^(3-s), j=0,1,2,
