@@ -1,8 +1,8 @@
 # Automatic repository sync
 
 The maintainer has authorized publishing completed project changes to `main`.
-Agents pull before work and commit/push after completing the relevant checks.
-A daily Codex task also checks the local clone for changes. That local task
+Agents commit completed work after the relevant checks. A daily Codex task
+pulls and pushes changes in the local clone. That local task
 requires the computer to be on, the desktop app running, and repository access.
 It is configured in the maintainer's app, not installed by cloning this repo.
 

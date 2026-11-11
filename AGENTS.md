@@ -1,15 +1,15 @@
 # Agent workflow
 
-The maintainer authorizes automatic Git pull, commits, and push for completed
-project work. Use the existing `origin` remote and `main` branch. Follow
+The maintainer authorizes daily automatic Git pull, commits, and push for
+completed project work. Use the existing `origin` remote and `main` branch. Follow
 [the sync procedure](docs/SYNC.md); stop and report conflicts rather than
 overwriting collaborators' work.
 
-Before editing, inspect Git status and fetch `origin`. With a clean working
-tree, integrate `origin/main` before starting. Coordinate workers so only one
-agent performs Git mutations, and do not commit another worker's unfinished
-changes. After completing and checking a change, review the diff, commit the
-intended files explicitly, integrate incoming changes, and push to `origin main`.
+Before editing, inspect Git status. Coordinate workers so only one agent
+performs Git mutations, and do not commit another worker's unfinished changes.
+After completing and checking a change, review the diff and commit the intended
+files explicitly. Leave routine pull/push to the daily sync task unless the
+maintainer requests an immediate sync.
 
 Keep credentials, personal logs, publisher PDFs, toolchains, and caches out of
 Git. Do not force-push or automatically resolve merge conflicts. Repository
