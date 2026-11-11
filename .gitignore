@@ -1,0 +1,23 @@
+# Downloaded toolchains, build products, and caches are local.
+.tools/
+**/.lake/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+# Local credentials and session-specific operational records.
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+.agents/
+research/*session*.txt
+# Source papers are linked in the documentation, not redistributed.
+*.pdf

@@ -1,0 +1,178 @@
+Finite zero-height verification and a bounded-time certificate
+=============================================================
+
+Result independently certified in this batch:
+
+  g_zeta(t)<0 for 1/2<=t<=40.
+
+Combining this with ns_startup_lemma.md gives g_zeta(t)<0 for
+0<t<=40. This is a finite-range consequence of established numerical
+theorems and elementary estimates, not a global proof or novelty claim.
+
+1. Primary inputs checked
+-------------------------
+
+Platt--Trudgian, The Riemann hypothesis is true up to 3*10^12,
+Bulletin LMS 53 (2021), DOI 10.1112/blms.12460:
+https://arxiv.org/html/2004.09765
+https://arxiv.org/abs/2004.09765
+
+Their rigorous verification ensures that every nontrivial zeta zero
+rho=beta+i tau with |tau|<=H=3*10^12 has beta=1/2.
+
+Bellotti--Wong, Improved estimates for the argument and zero-counting
+function of the Riemann zeta-function, arXiv:2412.15470v2 (7 July 2025),
+Theorem 1.1, second bound:
+https://arxiv.org/html/2412.15470v2
+
+For T>=e, with positive ordinates counted with multiplicity,
+
+ |N(T)-P(T)|<=R(T),
+ P(T)=T/(2*pi)*log(T/(2*pi*e)),
+ R(T)=.11200 log T+.12567 loglog T+3.77417.
+
+Use this precise version; earlier zero-counting papers have differing
+centerings, typos, and corrections discussed in that primary source.
+
+Five low zeros were obtained from the primary LMFDB dataset:
+https://www.lmfdb.org/zeros/zeta/list?N=1&limit=5&download=yes
+https://www.lmfdb.org/zeros/zeta/Source
+
+  1 14.1347251417346937904572519835625
+  2 21.0220396387715549926284795938969
+  3 25.0108575801456887632137909925628
+  4 30.4248761258595132103118975305840
+  5 32.9350615877391896906623689640747
+
+The Source page credits David Platt, states absolute storage precision
+plus/minus 2^(-102), and describes rigorous Turing verification of
+completeness. The certificate uses much wider radius 10^(-26) about
+each displayed value truncated to 26 decimal places, enclosing both
+storage uncertainty and discarded digits. No zeta evaluation is run.
+
+2. Explicit tail bound, including both signs of the ordinates
+-----------------------------------------------------------
+
+For a zeta zero rho=beta+i tau, the corresponding zero gamma of
+xi(1/2-i z) has |Re gamma|=|tau| and Im gamma=beta-1/2. Thus
+|Im gamma|<1/2 and |gamma|^2>=tau^2. For t>=0,
+
+ |exp(-i gamma t)-1|<=exp(t/2)+1.
+
+Consequently, with all multiplicities included,
+
+ |tail_H g(t)| <= (exp(t/2)+1) A(H),
+ A(H)=sum_{|Re gamma|>H} multiplicity(gamma)/|gamma|^2
+     <=2 sum_{tau>H} multiplicity(tau)/tau^2.
+
+Stieltjes integration by parts gives
+
+ sum_{tau>H} m_tau/tau^2
+   =-N(H)/H^2+2 integral_H^infinity N(u)/u^3 du.
+
+Substituting the lower bound at H and upper bound inside the integral
+gives the explicit, unconditional estimate
+
+ A(H) <= [log(H/(2*pi))+1]/(pi H)
+          +[4R(H)+.11200+.12567/log H]/H^2.                (1)
+
+The loglog integral is bounded using
+
+ 2 integral_H^infinity loglog(u)/u^3 du
+ <=[loglog(H)+1/(2 log H)]/H^2.
+
+The interval script obtains the upper bound
+
+ A(3*10^12)<2.9594072618281164848*10^(-12)
+           <2.959408*10^(-12).
+
+For orientation only, the resulting absolute tail envelopes are about
+0.001435802 at t=40, 0.01749165 at t=45, 0.06044436 at t=47.48,
+and 0.213092 at t=50. The script uses the exact outward enclosures,
+not these rounded orientation values.
+
+3. Finite certificate from five zeros
+------------------------------------
+
+For any chosen verified positive real zeros tau_1,...,tau_m<=H, put
+
+ D_m(t)=2 sum_{j=1}^m [1-cos(tau_j t)]/tau_j^2.
+
+All other zeros below H also give nonpositive real contributions,
+so the exact zero expansion implies
+
+ g(t)<=-D_m(t)+(exp(t/2)+1)A(H).                           (2)
+
+For the chosen five zeros,
+
+ |D_5'(t)|<=L=2 sum_{j=1}^5 1/tau_j<0.443061.
+
+On a cell [a,b], with midpoint c and radius r=(b-a)/2,
+
+ D_5(t)>=D_5(c)-Lr,
+ (exp(t/2)+1)A(H)<=(exp(b/2)+1)*2.959408*10^(-12).
+
+Therefore a strictly positive lower interval bound for
+
+ D_5(c)-Lr-(exp(b/2)+1)*2.959408*10^(-12)                  (3)
+
+certifies g(t)<0 throughout the entire cell. The script bisects cells
+until each passes (3). It evaluates cosine using directed arithmetic,
+reduces the argument by an integer multiple of 2*pi, and uses its
+Taylor polynomial through degree 60. The uniform remainder is bounded
+by 4^62/62!, after asserting that the reduced argument is in [-4,4].
+Pi is enclosed by Machin's formula; exp/ln receive the same one-ulp
+enlargement as in ns_startup_certificate.py.
+
+Run:
+
+  python3 research/zero_tail_certificate.py
+
+Observed successful output:
+
+ Accepted cells: 743
+ Total attempts: 1485
+ Smallest/largest cell width: .0012054443359375, .154296875
+ Smallest certified positive margin: 1.5232872787019404*10^(-7)
+ PASS: g_zeta(t)<0 for 1/2<=t<=40.
+
+The dyadic partition covers all of [1/2,40]; this is a continuous
+interval certificate, not positivity at sampled points only.
+
+4. Exact obstruction to promoting a fixed finite prefix globally
+--------------------------------------------------------------
+
+For any fixed finite list of real frequencies, simultaneous
+Diophantine approximation supplies arbitrarily large times at which
+all phases tau_j t are arbitrarily close to multiples of 2*pi.
+Consequently
+
+ inf_{t>=T} D_m(t)=0 for every finite T.
+
+This holds without assuming rational independence. A direct
+pigeonhole argument gives, for each integer Q>=2, an integer
+1<=q<=Q^m with ||q tau_j/(2*pi)||<=1/Q for every j, and then
+
+ D_m(q)<=4*pi^2/Q^2 sum_j 1/tau_j^2.
+
+If the selected q are unbounded this gives arbitrarily large returns;
+if some q repeats as Q increases, that q is an exact common period
+and its multiples give arbitrarily large exact returns. Thus no
+strictly positive uniform deficit can be inferred from a finite
+prefix, even if every zero below H were used.
+
+Moreover D_m(t)<=4 sum_j 1/tau_j^2 is bounded, whereas the envelope
+in (2) grows exponentially. For these five zeros its maximum possible
+deficit is about 0.04347548; the envelope exceeds even that bound by
+t approximately 46.821. Thus this particular five-zero/envelope
+certificate cannot possibly cover all sufficiently large t, regardless
+of subdivision accuracy. This is a limitation of the bound, not a
+claim that g becomes positive.
+
+The finite-height theorem can therefore support rigorous bounded-time
+certificates. It cannot by itself rule out an off-line zero above H:
+its contribution can remain tiny on every fixed bounded t interval
+and eventually grow through the exp(|Im gamma|t) factor. The first
+unresolved global step is controlling that high-zero contribution
+uniformly for unbounded t, or obtaining independent structure that
+prevents its positive excursions. No such global control is proved.

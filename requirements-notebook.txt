@@ -1,0 +1,5 @@
+# Optional: only needed to read/edit/run Python notebooks in JupyterLab.
+# Lean itself is installed separately through elan/Lake; this does not
+# install a Lean Jupyter kernel or replace Lean proof checking.
+jupyterlab>=4,<5
+ipykernel>=6,<8

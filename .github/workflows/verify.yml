@@ -1,0 +1,50 @@
+name: Verify research controls
+
+# Manual initially: publishing these files must not silently start remote
+# computation. Enable push/pull_request triggers after deciding the budget.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - name: Test interval arithmetic and certificate controls
+        run: |
+          python -m unittest discover -s research -p 'test_*.py' -v
+          python -m unittest discover -s scripts -p 'test_*.py' -v
+      - name: Replay startup and finite-zero certificates
+        run: |
+          python ns_startup_certificate.py
+          python research/zero_tail_certificate.py
+          python research/kernel_control.py
+          python research/screw_interval.py --limit 100
+  lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - uses: leanprover/lean-action@ba3fdfe5c4476c925da13bf11a005ddb47e47aee # v1
+        with:
+          lake-package-directory: formalization
+          auto-config: 'false'
+          build: 'true'
+          use-mathlib-cache: 'true'
+      - name: Recompile the arithmetic lemma and inspect its axioms
+        shell: bash
+        run: |
+          set -o pipefail
+          cd formalization
+          lake env lean RhCertificates/Tangent.lean | tee axioms-ci.log
+          python ../scripts/check_axiom_report.py axioms-ci.log

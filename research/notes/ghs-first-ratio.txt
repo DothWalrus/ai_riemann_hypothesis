@@ -1,0 +1,136 @@
+GHS and the first Laplace ratio inequality for xi
+Bounded analytic batch, 2026-11-11.
+Status: unconditional first-order result using a published xi-kernel
+theorem; this is not complete monotonicity and does not establish RH.
+
+Primary sources checked
+-----------------------
+1. C. M. Newman, The GHS inequality and the Riemann hypothesis,
+Constructive Approximation 7 (1991), 389--399.
+https://link.springer.com/article/10.1007/BF01888165
+
+The publisher abstract explicitly states that for the even potential
+V in the Riemann xi Fourier kernel, V' is convex on [0,infinity).
+This is an unconditional theorem. The full article was not accessible
+without payment in this batch; its stated result is sufficient below.
+
+2. R. S. Ellis, J. L. Monroe, C. M. Newman, The GHS and other
+correlation inequalities for a class of even ferromagnets,
+Communications in Mathematical Physics 46 (1976), 167--182.
+https://link.springer.com/article/10.1007/BF01608495
+
+The publisher abstract confirms that even C^1 potentials with convex
+V' belong to the class supporting their GHS inequalities. Instead of
+relying on an uninspected multi-spin theorem, the necessary one-spin
+implication is proved directly below.
+
+Scaling and notation
+--------------------
+Use the positive theta kernel A from the companion note, with
+
+    xi(1/2+w)=integral_0^infinity A(u) cosh(w*u) du.
+
+The normalized symmetric density proportional to A(|x|) is exp(-W(x))
+up to a constant, W=-log A. Newman's Fourier variable uses a positive
+linear rescaling x=2t, so his potential is W(2t)+constant. Convexity
+of the potential derivative is preserved by this rescaling. Therefore
+W' is convex for x>=0. The theta kernel is smooth and positive; thus
+W'' is even and nondecreasing as a function of |x|.
+
+Let kappa(w)=log[xi(1/2+w)/xi(1/2)]. Under exponential tilt,
+kappa'(w)=E_w X, kappa''(w)=Var_w X, and kappa'''(w) is the third
+central moment. All integrations and differentiations below converge
+because of the theta density's double-exponential tails.
+
+Elementary one-site GHS implication
+-----------------------------------
+More generally let p_h(x)=Z(h)^(-1)*exp(h*x-W(x)), where W is even,
+C^2, and W'' is nondecreasing on [0,infinity). Let h>0 and let
+m=E_h X>0. For t>=0 define
+
+    D(t)=log[p_h(m+t)/p_h(m-t)]
+        =2*h*t-W(m+t)+W(m-t).
+
+Then D(0)=0 and
+
+    D''(t)=-W''(m+t)+W''(m-t)<=0,
+
+since |m+t|>=|m-t|. Thus D is concave, D(t)/t is nonincreasing,
+and q(t)=p_h(m+t)-p_h(m-t) has at most one sign change, from
+positive to negative. The mean identity is
+
+    integral_0^infinity t*q(t) dt = 0.
+
+If q is not identically zero, this forces a crossing r in (0,infinity).
+Then (t^3-r^2*t)*q(t)<=0 at every t, and integration gives
+
+    E_h[(X-m)^3]=integral t^3*q(t)dt<=0.
+
+The case q identically zero gives equality. Hence
+
+    kappa'''(w)<=0 for EVERY w>=0.
+
+At w=0 this also follows from symmetry. Applying the argument to
+Newman's proven theta potential establishes this sign without any
+assumption about the locations of xi zeros.
+
+The requested ratio is therefore settled unconditionally
+---------------------------------------------------------
+Write mu(w)=kappa'(w)>0 and v(w)=kappa''(w)>0. Since v is
+nonincreasing and mu(0)=0,
+
+    mu(w)=integral_0^w v(s)ds >= w*v(w).
+
+This is stronger than the requested w*kappa''<=2*kappa'. For
+L(w)=kappa'(w)/w^2 it gives the explicit strict lower bound
+
+    -L'(w)=[2*mu(w)-w*v(w)]/w^3
+           >= mu(w)/w^3 >0,  w>0.
+
+Thus L>0 and -L'>0 on the ENTIRE positive axis. These are only the
+orders zero and one of complete monotonicity.
+
+Other justified consequences
+-----------------------------
+With M=kappa''(0)>0,
+
+    0<v(w)<=M,
+    w*v(w)<=mu(w)<=M*w,
+    mu(w)/w is nonincreasing,
+    0<kappa(w)<=M*w^2/2,
+    xi(1/2+w)/xi(1/2)<=exp(M*w^2/2).
+
+The Taylor expansion of the nonincreasing ratio mu(w)/w also yields
+kappa''''(0)<=0, equivalently
+
+    xi''''(1/2)/xi(1/2)
+       <=3*[xi''(1/2)/xi(1/2)]^2.
+
+These conclusions exploit Newman's xi-specific kernel theorem.
+They do not follow from positivity of a generic symmetric kernel.
+
+Exact next unresolved inequalities
+----------------------------------
+GHS controls c3=kappa''' from ABOVE, while the next Laplace
+conditions need LOWER bounds on it. In detail,
+
+    L''(w)=[w^2*c3-4*w*v+6*mu]/w^4,
+
+so second-order complete monotonicity requires
+
+    w^2*c3 >= 4*w*v-6*mu.
+
+The first ordinary Hankel determinant of the derivative moments is
+
+    L*L''-(L')^2
+      =[2*mu^2+w^2*(mu*c3-v^2)]/w^6.
+
+It requires c3>=v^2/mu-2*mu/w^2. The sign c3<=0 by itself
+establishes neither of these lower bounds. This is the precise
+remaining moment inequality after resolving the first ratio.
+
+Concrete next analytic test: seek a quantitative lower bound for
+the tilted third central moment from the explicit theta potential,
+with either of the two displayed lower bounds as the target.
+An argument that merely repeats GHS or substitutes real zero
+locations cannot supply the missing implication.

@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-riemann-hypothesis"
+version = "0.1.0"
+description = "Reproducible finite controls and research notes for an RH investigation"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = []
+
+[project.optional-dependencies]
+notebook = ["jupyterlab>=4,<5", "ipykernel>=6,<8"]
+
+[tool.setuptools]
+packages = ["research"]
+py-modules = ["ns_startup_certificate"]

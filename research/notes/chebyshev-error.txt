@@ -1,0 +1,184 @@
+Exact Chebyshev-error reduction and its unresolved step
+=====================================================
+
+Definitions. For x>=1 let
+
+  psi(x) = sum_{n<=x} Lambda(n),  E(x)=psi(x)-x,
+  C = -(digamma(1/4)-log(pi))/2 = 2.6860917096...,
+  J(x) = integral_1^x E(u) u^(-3/2) [1+(1/2)log(x/u)] du.
+
+Here psi is Chebyshev's function; digamma is written out to avoid a
+collision of names. All integrals up to a finite x are ordinary integrals.
+
+1. Exact identity (unconditional)
+--------------------------------
+
+Write S(x)=sum_{n<=x} Lambda(n)n^(-1/2)log(x/n). Stieltjes integration
+by parts gives
+
+  S(x)=integral_1^x psi(u)u^(-3/2)[1+(1/2)log(x/u)]du.
+
+The lower boundary is zero because psi(1)=0, and the upper boundary
+is zero because log(x/x)=0. For the baseline psi(u)=u the integral is
+
+  4 sqrt(x)-log(x)-4.
+
+Thus formula (1.5) of Nakamura--Suzuki gives exactly
+
+  g(log x)=J(x)+4-4/sqrt(x)+(C-1)log(x)
+       +[Phi(x^(-2),2,1/4)/sqrt(x)-Phi(1,2,1/4)]/4.       (A)
+
+No limiting interchange or assumption on zeta zeros enters (A).
+The log coefficient is C-1, not C-2; replacing the Stieltjes integral
+against d psi by an integral against psi without its lower-boundary
+correction is one source of the latter error.
+
+Define the positive constant and decreasing positive remainder
+
+  K = sum_{k>=1} 1/[4(k+1/4)^2] = 0.2993322886...,
+  R(x) = sum_{k>=1} x^(-2k-1/2)/[4(k+1/4)^2].
+
+Then R(1)=K, R(x) decreases to 0, and (A) simplifies to
+
+  g(log x)=J(x)+(C-1)log(x)-K+R(x).                       (B)
+
+In particular, the x^(-1/2) terms cancel exactly between the explicit
+archimedean exponential and the k=0 Lerch term. Remaining corrections
+are O(x^(-5/2)); for x>1,
+
+  0<R(x)<=x^(-5/2)/[4(5/4)^2(1-x^(-2))].
+
+2. A useful weaker-looking sufficient inequality
+------------------------------------------------
+
+An unresolved sufficient target is simply
+
+  There exists X>=1 such that J(x)<=0 for every x>=X.     (T)
+
+This is weaker in form than the exact pointwise inequality
+J(x)<=(1-C)log(x)+K-R(x) corresponding to g<=0. Target (T)
+does not require getting the linear coefficient or constant sharp.
+Nevertheless it remains RH-strength, for the following reason.
+
+From (B), (T) gives g(t)<=(C-1)t eventually. Set
+h(t)=(C-1)t-g(t) after a sufficiently large finite T, and h(t)=0
+before T. Then h>=0. For Re(w)>1/2, its Laplace transform is the
+sum of an entire finite-prefix correction and
+
+  (C-1)/w^2 + (1/w^2)(xi'/xi)(1/2+w).
+
+It is holomorphic near every positive real w, since xi has no zeros
+on the real line there. If the abscissa of convergence were positive,
+Landau's theorem for a nonnegative Laplace integrand would require a
+singularity at that real abscissa, a contradiction. Therefore its
+Laplace transform is holomorphic on Re(w)>0, excluding zeros of xi
+in Re(s)>1/2. Functional symmetry then gives RH.
+
+Conversely RH implies g is bounded, by its absolutely convergent
+zero expansion, so (B) gives
+
+  J(x)=-(C-1)log(x)+O(1),
+
+which is eventually negative because C>1. Thus (T) is equivalent to
+RH; it is not an unconditional estimate obtained here. More generally,
+any eventual one-sided bound J(x)<=A(1+log(x))^m, with fixed finite
+A,m>=0, suffices by using a polynomial majorant in the same argument.
+
+An even looser growth formulation is
+
+  for every epsilon>0, J(x)<=B_epsilon x^epsilon
+  for all sufficiently large x.
+
+For each epsilon, the epsilon-exponential majorant and the same
+Landau argument exclude zeros with real part >1/2+epsilon. Letting
+epsilon decrease to zero gives RH. All these formulations are
+reductions of the same unsolved obstruction, not independent progress.
+
+3. Why an infinite-moment cancellation is invalid
+------------------------------------------------
+
+For Re(s)>1 one has
+
+  M(s)=integral_1^infinity E(u)u^(-s-1)du
+      =-(zeta'/zeta)(s)/s - 1/(s-1).                    (C)
+
+Since (xi'/xi)(1/2)=0, the analytic continuation satisfies
+(zeta'/zeta)(1/2)=C. Consequently its value at 1/2 is
+
+  M_cont(1/2)=2(1-C).
+
+Formally this would cancel (C-1)log(x) in (B) when one expands
+J(x)=(1+(1/2)log(x))I_0(x)-(1/2)I_1(x), where
+
+  I_0(x)=integral_1^x E(u)u^(-3/2)du,
+  I_1(x)=integral_1^x E(u)log(u)u^(-3/2)du.
+
+But M_cont(1/2) is NOT the value of an ordinary improper integral.
+In fact I_0(x) cannot converge, unconditionally, as follows.
+
+Suppose F(v)=I_0(exp(v)) tends to a finite L. Integration by parts
+would give, initially for Re(w)>1/2 and then throughout Re(w)>0,
+
+  M(1/2+w)=w integral_0^infinity F(v)exp(-wv)dv.           (D)
+
+The right side is holomorphic on Re(w)>0. Equation (C) would then
+exclude zeros in Re(s)>1/2 and imply RH. Choose a nontrivial zero
+rho=1/2+i gamma (gamma nonzero), of multiplicity m. Such zeros exist.
+For w=epsilon+i gamma, convergence F(v)->L implies
+
+  epsilon M(rho+epsilon)->0 as epsilon decreases to zero:
+
+split F=L+(F-L), evaluate the constant part, and bound the tail
+by sup_{v>=V}|F(v)-L| times epsilon integral_V^infinity exp(-epsilon v)dv.
+The finite prefix vanishes after multiplication by epsilon. However,
+(C) and the zero at rho give
+
+  epsilon M(rho+epsilon)->-m/rho, which is nonzero.
+
+This contradiction proves nonconvergence of the signed improper
+moment. Absolute convergence is therefore impossible as well. A
+meromorphically continued Mellin value cannot be substituted into
+the finite-x identity (B) as a convergent moment.
+
+4. What unconditional prime estimates give and fail to give
+---------------------------------------------------------
+
+For any hypothetical absolute envelope |E(u)|<=B u^theta, theta>1/2,
+put a=theta-1/2. Direct integration bounds
+
+  |J(x)|<=B x^a [1/a+1/(2a^2)]
+
+apart from an immaterial finite initial interval. This is far larger
+than the one-sided polylogarithmic or subpower target when a>0.
+An absolute square-root estimate with logarithmic factors would yield
+a polylogarithmic J bound, but such a square-root estimate is already
+RH-strength.
+
+The classical unconditional PNT envelope
+E(u)=O(u exp(-c sqrt(log u))) yields by the same absolute-value method
+
+  J(x)=O(sqrt(x) exp(-c' sqrt(log x)))
+
+for a positive c', still x^(1/2-o(1)). Modern zero-free-region
+improvements alter the subexponential factor but do not remove this
+power-size gap. This observation compares forms of bounds; no current
+record numerical constant is asserted here.
+
+The first unresolved lemma is therefore a one-sided cancellation
+estimate such as (T), or the still weaker one-sided subpower growth
+statement. Available absolute PNT error bounds do not establish it.
+The finite-range checker can test J directly using (B), but no amount
+of finite testing alone supplies the eventual assertion.
+
+Next concrete test: transfer the existing finite g certification to J.
+For 1<x<=2 the prime sum vanishes, so
+J(x)=-4 sqrt(x)+log(x)+4<0 directly. For x>=2, g(log x)<=0 gives
+J(x)<=-(C-1)log(x)+K<0: coarse rational bounds C-1>3/2, K<1/2,
+and log(2)>1/3 suffice. Thus a verified g<=0 range through x=100
+already proves J<0 on 1<x<=100; no separate stationary-point
+computation is needed. Document that finite range separately from
+the unsolved eventual assertion (T).
+
+Sources: Nakamura--Suzuki (2023), equations (1.5), (1.7), (2.2), and
+the standard Landau theorem for Laplace transforms of nonnegative
+functions used in their converse proof. No novelty claim is made.

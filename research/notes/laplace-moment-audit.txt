@@ -1,0 +1,207 @@
+Laplace complete monotonicity and theta-moment audit
+Independent bounded research batch, 2026-11-11.
+Status: unconditional partial lemmas and an exact missing positivity
+condition. No claim to establish RH.
+
+Subsequent literature update: the xi-specific first ratio inequality
+identified below IS resolved by Newman's 1991 theorem that the theta
+potential derivative is convex. See 2026-11-11-ghs-first-ratio.txt for
+the elementary one-site GHS deduction and the next unresolved bound.
+The generic-kernel counterexample and the full Hankel gap below remain
+valid; the earlier wording of the first xi-specific gap is superseded.
+
+Definitions
+-----------
+Write F(w)=xi(1/2+w)/xi(1/2), kappa(w)=log F(w) for real w, and
+
+    L(w)=kappa'(w)/w^2,  w>0.
+
+The paper's transform gives, initially for w>1/2,
+
+    L(w)=integral_0^infinity [-g(t)] exp(-w*t) dt.
+
+The unconditional zero expansion gives |g(t)|<=C*(exp(t/2)+1).
+Also xi(1/2+w)>0 for real w, by its positive theta integral.
+
+1. What the positive theta kernel DOES prove
+------------------------------------------
+Let A(u)>0 be the theta kernel specified in the companion note. Then
+
+    F(w)=E[exp(w*X)]
+
+for a symmetric real random variable X having density proportional
+to A(|x|). All required exponential moments exist. Hence
+
+    kappa'(w)=E_w[X]>0 for w>0,
+    kappa''(w)=Var_w(X)>0,
+
+where E_w denotes exponential tilt by exp(wX). In particular L(w)>0
+for all w>0. Every derivative of F is positive for w>0 as well.
+
+The raw even moments b_n=E[X^(2n)]=xi^(2n)(1/2)/xi(1/2) satisfy
+both families of Stieltjes Hankel inequalities:
+
+    [b_(i+j)] >= 0,   [b_(i+j+1)] >= 0.
+
+Indeed their quadratic forms are integrals of a squared polynomial
+in X^2, optionally multiplied by X^2. These matrices are strictly
+positive definite for nonzero finite polynomials since A is positive
+on every positive interval.
+
+2. The first ratio inequality is not automatic
+--------------------------------------------
+Complete monotonicity of L first requires
+
+    -L'(w)=[2*kappa'(w)-w*kappa''(w)]/w^3 >= 0.
+
+Positivity of a symmetric theta-type integral, considered just as
+positivity of its mixing measure, supplies no such general theorem.
+An exact counterexample to that proposed GENERAL implication is
+
+    P(X=0)=99/100, P(X=1)=P(X=-1)=1/200,
+    F_*(w)=99/100+cosh(w)/100.
+
+At w_*=log(100), put kappa_*=log F_*. Then
+
+    cosh(w_*)=10001/200, sinh(w_*)=9999/200,
+    kappa_*'(w_*)=9999/29801,
+    kappa_*''(w_*)=198059800/888099601.
+
+The ratio kappa_*''/kappa_*'=198059800/297980199 exceeds 1/2.
+Since log(100)>4, w_* kappa_*''>2 kappa_*', so L_*'(w_*)>0.
+This does not refute the xi-specific inequality. It proves that an
+additional quantitative property of its particular kernel is needed.
+
+The obstruction persists for a smooth strictly positive density:
+convolve this law with a centered Gaussian of variance 1/100.
+This adds w^2/200 to kappa_*. Thus w*kappa''-2*kappa' changes by
+-w/100. At w_*, the original difference exceeds 2/15, since the
+displayed ratio exceeds 3/5, kappa_*'>1/3, and w_*>4. Meanwhile
+w_*/100<1/20. The resulting difference remains positive.
+
+The raw-moment/cumulant gap already appears in degree four. RH
+would imply
+
+    kappa''''(0)=b_2-3*b_1^2 < 0,
+
+because it equals -6*sum_gamma m_gamma/gamma^4 under real-zero
+support. Positive mixing measures need not have this sign: the
+three-point example has b_1=b_2=1/100 and positive fourth cumulant
+97/10000. Raw Hankel positivity is therefore not the desired
+logarithmic-derivative positivity.
+
+3. An unconditional all-orders LOCAL lemma
+----------------------------------------
+Nevertheless L is completely monotone on some initial interval
+(0,epsilon), with epsilon>0, WITHOUT RH. This is a local statement
+and does not mean that L is a Laplace transform on the whole axis.
+
+Proof. By symmetry and xi(1/2)!=0,
+
+    L(w)=M/w+R(w),  M=xi''(1/2)/xi(1/2)>0,
+
+where R is analytic at zero. Choose r>0 so R is analytic on a
+neighborhood of the closed disk |w|<=r, and let B bound |R| there.
+Cauchy's estimate, centered at real 0<w<r, gives
+
+    |R^(n)(w)| <= n!*B/(r-w)^n.
+
+Consequently
+
+    (-1)^n L^(n)(w)
+      >= n!/w^(n+1) * [M-B*w*(w/(r-w))^n] > 0
+
+for EVERY n>=0 whenever 0<w<min(r/2,M/B); interpret M/B as infinity
+if B=0. This proves the assertion. The existence of r and finite B
+does not presume anything about zeros outside this local disk.
+
+Thus even verifying all derivative signs near w=0 cannot by itself
+settle the global question.
+
+4. Each FIXED derivative also has the right eventual sign
+-------------------------------------------------------
+The elementary logarithmic-derivative formula, Stirling expansion,
+and the absolutely convergent Euler product for large w give
+
+    L(w)=[log(w/(2*pi))]/(2*w^2)+O(w^(-3)).
+
+The differentiated expansions are valid to each fixed order n and
+yield
+
+    (-1)^n L^(n)(w)
+     = (n+1)!/(2*w^(n+2))
+       *[log(w/(2*pi))-(H_(n+1)-1)+O_n(1/w)].
+
+Therefore for every fixed n its complete-monotonicity inequality
+holds for all sufficiently large w. The threshold can depend on n.
+This supplies neither a uniform threshold for all n nor the missing
+global inequalities in between.
+
+5. Exact Hankel target at ONE Laplace parameter
+----------------------------------------------
+Fix any w0>1/2 and define
+
+    a_n=(-1)^n L^(n)(w0)
+       =integral t^n [-g(t)] exp(-w0*t) dt.
+
+Then RH is equivalent to positive semidefiniteness of BOTH
+
+    H_N=[a_(i+j)]_(i,j=0..N),
+    H_N^+=[a_(i+j+1)]_(i,j=0..N)
+
+for EVERY N. Necessity is immediate under -g>=0. For sufficiency,
+the Stieltjes moment theorem produces a positive measure with these
+moments. The known signed density eta(dt)=-g(t)exp(-w0*t)dt has
+an exponential moment for every delta<w0-1/2, and its moments obey
+factorial growth bounds C*n!/(w0-1/2)^(n+1), after changing C.
+The positive representing measure also has an exponential moment:
+expand cosh(delta*t), use positivity and the even-moment bounds,
+and then use exp(delta*t)<=2*cosh(delta*t) for t>=0.
+
+Thus both measures have analytic moment generating functions near
+zero, with the same Taylor coefficients. Laplace/Fourier uniqueness
+forces equality. Hence eta is positive, so g<=0 everywhere by
+continuity; the paper's converse gives RH.
+
+This is a precise analytic route: prove all the displayed Hankel
+quadratic forms using the PRIME-side g or equivalent xi identities.
+The theta kernel's raw-moment Hankel inequalities in Section 1 do
+not imply these transformed Hankel inequalities.
+
+6. Complete-monotonicity equivalence and remaining gap
+----------------------------------------------------
+RH implies L is completely monotone on all w>0 via the nonnegative
+Laplace density -g. Conversely global complete monotonicity gives
+a positive representing measure by Bernstein's theorem. Tilt at
+w0>1/2 and compare with the known signed density, using uniqueness;
+this gives -g>=0 and hence RH.
+
+First missing lemma: for the SPECIFIC theta kernel A, prove either
+all the transformed Hankel inequalities at one fixed w0>1/2 or all
+inequalities (-1)^n*d^n[(log xi(1/2+w))'/w^2]>=0 for every w>0.
+Even the first nontrivial ratio inequality requires a property beyond
+positivity of A. Substituting hypothetical real zero locations into
+the partial fractions would be circular.
+
+Concrete next analytic test: derive an xi-specific weighted-moment
+bound w*Var_w(X)<=2*E_w(X). A proof must exploit the explicit theta
+kernel, rather than generic exponential-tilt convexity. Separately,
+compare the first transformed Hankel determinant
+
+    a_0*a_2-a_1^2 >= 0
+
+with the raw theta-moment determinants, explicitly retaining the
+quotient terms from differentiation of log F. This can reveal the
+extra covariance inequality that an analytic proof would need.
+
+Writing mu=kappa'(w), v=kappa''(w), c3=kappa'''(w), direct
+differentiation gives the exact first determinant formula
+
+    a_0*a_2-a_1^2
+      = [2*mu^2+w^2*(mu*c3-v^2)]/w^6.
+
+Thus the first ordinary Hankel determinant asks for
+2*mu^2+w^2*(mu*c3-v^2)>=0. Here mu and v are the tilted mean
+and variance, while c3 is the tilted third central moment. Generic
+theta-measure positivity gives v>0 but supplies no needed sign or
+bound for this particular third-moment combination.

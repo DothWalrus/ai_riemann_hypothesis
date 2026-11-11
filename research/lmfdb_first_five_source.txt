@@ -1,0 +1,14 @@
+Source retrieved independently twice on 2026-11-11:
+https://www.lmfdb.org/zeros/zeta/list?N=1&limit=5&download=yes
+Source precision and rigorous provenance:
+https://www.lmfdb.org/zeros/zeta/Source
+
+1 14.1347251417346937904572519835625
+2 21.0220396387715549926284795938969
+3 25.0108575801456887632137909925628
+4 30.4248761258595132103118975305840
+5 32.9350615877391896906623689640747
+
+The input radii in zero_tail_certificate.py include the source precision
++/-2^-102 and the discarded decimal digits. First five positive ordinates;
+negative ordinates are accounted for by the explicit factor two.

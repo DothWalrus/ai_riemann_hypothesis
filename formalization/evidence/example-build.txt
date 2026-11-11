@@ -1,0 +1,4 @@
+ℹ [885/887] Built RhCertificates.Tangent (4.0s)
+info: RhCertificates/Tangent.lean:34:0: 'RhCertificates.tangent_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [886/887] Built RhCertificates (2.1s)
+Build completed successfully (887 jobs).

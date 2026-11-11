@@ -1,0 +1,3 @@
+# Python >=3.11 is required (also declared in pyproject.toml).
+# Core verification has no third-party runtime dependencies.
+# All certificate scripts and tests use the Python standard library.

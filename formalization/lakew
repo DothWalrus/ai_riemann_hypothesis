@@ -1,0 +1,21 @@
+#!/bin/sh
+# Build wrapper. Unlike an elan proxy, elan run without --install never
+# automatically installs a missing Lean toolchain.
+set -eu
+lean_wrapper_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+. "$lean_wrapper_dir/lean-env.sh"
+
+if [ -z "$lean_elan" ]; then
+    printf '%s\n' 'Lean is not installed. Run ./formalization/bootstrap.sh explicitly.' >&2
+    exit 1
+fi
+
+case "${1:-build}" in
+    update|new|init) ;; # Explicit dependency/project creation commands may download.
+    *)
+        python3 "$lean_project_dir/check-dependencies.py" "$lean_project_dir"
+        ;;
+esac
+
+cd "$lean_project_dir"
+exec "$lean_elan" run "$lean_toolchain" lake --no-cache "$@"
