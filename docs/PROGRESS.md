@@ -113,6 +113,31 @@ whether or not RH fails there. It shows that a fixed finite number of the
 required inequalities follows from finite verification; the open problem is
 a statement uniform in the derivative order.
 
+### What the Laplace hierarchy measures
+
+Status: **written arguments with one independent AI re-derivation, awaiting
+maintainer review; the order estimate is heuristic; the toy-model computation
+is exploratory; no novelty claimed.**
+
+[The map note](../research/notes/post-widder-map.txt) records three facts about
+the normalized derivatives `c_n(w) = (-1)^n w^(n+1) L^(n)(w)/n!`:
+
+1. For `w > 1/2`, `c_n(w)` is a Gamma-window average of `-g` (Post–Widder),
+   so complete monotonicity of `L` is the pointwise sign of `g` at finite
+   resolution.
+2. Given the external inputs of the second-order note, `c_n(w) > 0` whenever
+   `w <= 9 * 10^24` and `n + 1 > 1.184 * 10^-11 w^2`. These inequalities hold
+   whatever the zeros above the verified height do.
+3. Unconditionally, an off-line zero `1/2 + b + ia` forces infinitely many
+   negative `c_n(w)` at every `w > (a^2+b^2)/(2b)`; below the least such
+   threshold `c_n(w)` tends to a positive constant. RH is therefore
+   equivalent to eventual sign-regularity at an unbounded set of `w`.
+
+`research/postwidder_toy.py` illustrates item 3 on an artificial function
+with one invented off-line zero. It makes no statement about zeta.
+
+These results explain why the route is hard; they do not advance it.
+
 ## What does Lean currently certify?
 
 `RhCertificates.tangent_negative` checks this arithmetic implication:
