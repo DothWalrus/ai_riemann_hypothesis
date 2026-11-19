@@ -1,6 +1,6 @@
 # Progress and verification status
 
-Status as of 2026-11-11: **no proof or counterexample to the Riemann hypothesis;
+Status as of 2026-11-19: **no proof or counterexample to the Riemann hypothesis;
 no new zero-verification record; no claim of a novel theorem.**
 
 ## The research target
@@ -161,6 +161,17 @@ These are finite ranges. E4 slows the growth of the unverified tail from
 `e^{t/2}` to `e^{3t/8}`; it does not remove it, and it does not imply RH.
 
 ## What does Lean currently certify?
+
+**Update, 2026-11-19:** the [curvature and series report](../research/reports/2026-11-19-curvature-series-agent.md)
+records new kernel-checked analytic components. Lean now proves the explicit
+curvature expression changes sign between `1/4` and `1/3`, using an exact
+Taylor bound and the intermediate value theorem. For the displayed smooth
+series with arbitrary coefficient `C`, it proves convergence on `t>=0`,
+continuity at zero, the value zero there, each summand's first and second
+derivatives, and the exact geometric sum of the exponential second-derivative
+tail. Differentiating the infinite sum remains a separate obligation; the
+actual numerical tangent bounds and the full screw-function identity are not
+yet certified by these results.
 
 `RhCertificates.tangent_negative` checks this arithmetic implication:
 

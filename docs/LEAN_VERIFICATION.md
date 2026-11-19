@@ -7,7 +7,7 @@ function.
 
 ## Current status
 
-The repository contains one checked arithmetic implication:
+The original checked arithmetic implication is
 `RhCertificates.tangent_negative`, in
 [`formalization/RhCertificates/Tangent.lean`](../formalization/RhCertificates/Tangent.lean).
 
@@ -19,8 +19,8 @@ h < -1/40,  -1/32 < d < 0,  and  t >= 1/4
 ```
 
 **Status: kernel-checked arithmetic; conditional with respect to its intended
-analytic application.** The bounds on the actual screw function, the supporting
-tangent inequality, and the convex-chord argument have not been formalized.
+analytic application.** The bounds on the actual screw function have not been
+formalized. A generic tangent/chord formalization is being developed separately.
 This certificate does not prove the complete startup lemma, the Python
 finite-range result, or RH.
 
@@ -29,6 +29,21 @@ logical foundations used by Mathlib. No `sorry` or `admit` holes or additional
 mathematical axioms occur in this theorem. The recorded report is in
 [`formalization/evidence/tangent-axioms.txt`](../formalization/evidence/tangent-axioms.txt).
 Re-run the check rather than treating a saved log as a certificate by itself.
+
+**Additional checked components, 2026-11-19:**
+
+- [`Curvature.lean`](../formalization/RhCertificates/Curvature.lean) proves the
+  exact curvature sign transition in `(1/4,1/3)`, with no Python input.
+- [`SmoothSeries.lean`](../formalization/RhCertificates/SmoothSeries.lean) defines
+  the displayed smooth series for an arbitrary real `C` and proves convergence,
+  continuity at zero, its value zero there, individual summand derivatives and
+  the exponential tail sum. The exchange of derivative and infinite sum still
+  needs a separate proof.
+
+See the [detailed report](../research/reports/2026-11-19-curvature-series-agent.md)
+for exact scope, replay commands, and remaining analytic/numerical obligations.
+The saved logs disclose only the same three standard logical axioms. These
+components do not yet certify the complete startup lemma or RH.
 
 ## Install and build
 
