@@ -123,8 +123,8 @@ python3 scripts/verify_lean_certificates.py
 The repository also includes a [manual verification workflow](.github/workflows/verify.yml).
 After publication, a maintainer can start it from GitHub's **Actions** tab. It
 does not run automatically on pushes. No hosted run has been performed as part
-of preparing these files. The workflow includes a check of the current Lean
-registered certificates' printed axiom reports; those checks do not certify
+of preparing these files. The workflow checks all registered Lean
+certificates' printed axiom reports; those checks do not certify
 unrelated prose or unformalized global analytic claims.
 
 ## Collaborate

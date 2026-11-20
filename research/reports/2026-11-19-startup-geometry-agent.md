@@ -99,4 +99,3 @@ kernel-checked analytic step. Together with `SmoothSeries`, it supplies the
 continuity, differentiability, zero-value and curvature inputs for the defined
 series. The exact value and slope bounds at `1/2`, including the intended
 linear constant, still need an analytic-to-arithmetic Lean bridge.
-

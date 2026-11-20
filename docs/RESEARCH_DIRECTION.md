@@ -147,7 +147,7 @@ in kind.
 certificate for a transcription of the source's defining formula. The
 digamma/Lerch identities, series convergence and differentiation, convexity
 and tangent geometry, exact constant/value/slope bounds, and prime-sum cutoff
-are proved. `StartupCertificate.sourceFormula_negative_on_startup` establishes
+are proved. `RhCertificates.sourceFormula_negative_on_startup` establishes
 strict negativity on `0<t<=log(2)` and its zero-endpoint theorem covers `t=0`.
 See [the combined report](../research/reports/2026-11-19-startup-certificate-synthesis.md).
 Do not repeat these completed obligations as if they were still open.
