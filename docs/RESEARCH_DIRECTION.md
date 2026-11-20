@@ -143,13 +143,19 @@ in kind.
 
 ## Formalization sequence
 
-The first Lean target is deliberately smaller than the research question:
+**Completed, 2026-11-19:** the first Lean target now has an end-to-end
+certificate for a transcription of the source's defining formula. The
+digamma/Lerch identities, series convergence and differentiation, convexity
+and tangent geometry, exact constant/value/slope bounds, and prime-sum cutoff
+are proved. `StartupCertificate.sourceFormula_negative_on_startup` establishes
+strict negativity on `0<t<=log(2)` and its zero-endpoint theorem covers `t=0`.
+See [the combined report](../research/reports/2026-11-19-startup-certificate-synthesis.md).
+Do not repeat these completed obligations as if they were still open.
 
-1. Keep the already checked arithmetic tangent implication reproducible.
-2. Formalize the analytic tangent/chord lemma with explicit hypotheses.
-3. Prove those hypotheses for the actual smooth part of `g`.
-4. Connect exact numerical enclosures to the analytic estimates.
-5. Only then describe the startup sign result as fully Lean-certified.
+Next formalization work should start by replaying this certificate, then target
+the exact interval-checker correctness theorem and elementary-function/tail
+bounds needed for the finite zero-tail certificate. Keep the global proof
+question separate: its remaining difficulty is unbounded prime cancellation.
 
 The finite zero-tail certificate additionally depends on published zero
 verification and explicit counting estimates. Those dependencies must be

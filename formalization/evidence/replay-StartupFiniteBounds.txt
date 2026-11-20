@@ -1,0 +1,24 @@
+RhCertificates/StartupFiniteBounds.lean:142:49: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+RhCertificates/StartupFiniteBounds.lean:146:49: warning: Unused tactic linter: `<;>` should be replaced with `;` or be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+RhCertificates/StartupFiniteBounds.lean:142:49: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+RhCertificates/StartupFiniteBounds.lean:146:49: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'RhCertificates.SmoothSeries.exp_quarter_coarse_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.exp_neg_quarter_coarse_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.exponential_half_rate_as_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothPart_half_lt_coarse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.coefficient_mul_rate_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_half_as_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_half_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_half_sum_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_half_sum_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothDerivative_half_coarse_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,31 @@
+'RhCertificates.PrimeSupport.staircase_normalized' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.event_indices_below_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.event_gaps_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.staircase_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.staircase_on_event_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.staircase_positive_event_increment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.PrimeSupport.staircase_right_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.staircase_ratio_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.staircaseLog_weighted_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.PrimeSupport.staircase_weighted_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.staircase_weighted_eventually_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.PrimeSupport.nextEvent_le_of_noJump_and_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.PrimeSupport.nextEvent_gap_of_pnt_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.staircase_error_of_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.nextEvent_ratio_of_pnt_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.staircase_ratio_of_pnt_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeSupport.nextEvent_eventual_gap_of_pnt_envelope' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.PrimeSupport.staircase_ratio_of_pnt_count_envelope' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.PrimeSupport.supported_countermodel' depends on axioms: [propext, Classical.choice, Quot.sound]

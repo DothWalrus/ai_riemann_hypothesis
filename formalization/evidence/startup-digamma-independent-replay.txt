@@ -1,0 +1,12 @@
+Independent source replay from repository root:
+./formalization/lakew env lean RhCertificates/StartupDigamma.lean
+Exit status: 0
+Source SHA256: 47d93d48b6de955aa5738dbfbed1912948e292373be780eb6bd4b21890fe2e91
+
+'RhCertificates.complex_cot_pi_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.digamma_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.digamma_quarter_im' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.complex_digamma_coefficient_eq_startupConstant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.digammaLinearCoefficient_eq_startupConstant' depends on axioms: [propext, Classical.choice, Quot.sound]

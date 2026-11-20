@@ -3,3 +3,8 @@ module
 public import RhCertificates.Tangent
 public import RhCertificates.Curvature
 public import RhCertificates.SmoothSeries
+public import RhCertificates.StartupCertificate
+public import RhCertificates.PrimeSupport
+public import RhCertificates.ArithmeticCancellation
+public import RhCertificates.MajorantLoss
+public import RhCertificates.SignedFactorial

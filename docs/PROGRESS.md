@@ -162,6 +162,26 @@ These are finite ranges. E4 slows the growth of the unverified tail from
 
 ## What does Lean currently certify?
 
+**Main update, 2026-11-19:**
+[StartupCertificate.lean](../formalization/RhCertificates/StartupCertificate.lean)
+now proves the explicitly defined smooth series strictly negative for every
+positive argument, using the actual gamma/pi/log coefficient. It also proves
+the corresponding smooth-series-plus-finite-sum formula negative for
+`0<t<=log(2)`, for every weight function. All regularity, curvature and numerical
+hypotheses are discharged in those two final instances. The source was
+independently reviewed and replayed. See
+[the combined certificate report](../research/reports/2026-11-19-startup-certificate-synthesis.md).
+
+The digamma identity, convergent Lerch-series cancellation and positive-integer
+prime-sum reindexing are now also checked. `sourceFormula_negative_on_startup`
+proves the strict sign for a transcription of the paper's equation (1.5) on
+`0<t<=log(2)`; `sourceFormula_zero` proves its zero endpoint. The transcription
+was independently compared with the paper. This is a formalization of a finite
+startup result, not an RH proof, a new zero record, or a novelty claim. The
+paper's global RH criterion and zero expansion are not formalized here.
+
+### Component certificates and original setup lemma
+
 **Update, 2026-11-19:** the [curvature and series report](../research/reports/2026-11-19-curvature-series-agent.md)
 records new kernel-checked analytic components. Lean now proves the explicit
 curvature expression changes sign between `1/4` and `1/3`, using an exact
@@ -169,9 +189,9 @@ Taylor bound and the intermediate value theorem. For the displayed smooth
 series with arbitrary coefficient `C`, it proves convergence on `t>=0`,
 continuity at zero, the value zero there, each summand's first and second
 derivatives, and the exact geometric sum of the exponential second-derivative
-tail. Differentiating the infinite sum remains a separate obligation; the
-actual numerical tangent bounds and the full screw-function identity are not
-yet certified by these results.
+tail. Subsequent modules now justify differentiation of the infinite sum and
+prove the numerical tangent bounds; the initial report records the earlier
+checkpoint, and the combined report above records the completed integration.
 
 `RhCertificates.tangent_negative` checks this arithmetic implication:
 
@@ -191,10 +211,29 @@ The theorem compiles without unfinished proofs or added mathematical axioms.
 Its axiom report lists `propext`, `Classical.choice`, and `Quot.sound`, the
 standard logical foundations used in this Mathlib proof.
 
-It does **not** certify that the actual screw function has the assumed
-intercept or slope, nor that its analytic tangent and chord arguments apply.
-Consequently the full startup result and finite zero-tail certificate are
-**not yet Lean-certified**.
+This original arithmetic theorem alone does **not** certify those analytic
+hypotheses. The new combined certificate supplies them for the explicit series
+and finite formula, with the source-expression bridge checked separately.
+The finite zero-tail certificate remains a separate formalization obligation.
+
+### Checked obstructions to overly coarse global deductions
+
+The [artificial-model report](../research/reports/2026-11-19-global-prime-agent.md)
+and [supported-staircase report](../research/reports/2026-11-19-prime-support-agent.md)
+show why normalization, monotonicity, event support and PNT-shaped error bounds
+alone do not force the desired one-sided sign. Their formal scope is explicit;
+they do not replace actual von Mangoldt weights or provide RH counterexamples.
+
+The [arithmetic cancellation report](../research/reports/2026-11-19-arithmetic-cancellation-agent.md)
+proves an obstruction using the actual target kernel at prime powers 2 and 4:
+every nonnegative combination of floor kernels satisfies the opposite
+inequality to that target when `x>=32`. This excludes exact positive
+factorial-floor representations. It does not exclude signed combinations or
+majorants with controlled loss. These are limitations of specific proof
+strategies, not progress establishing the global sign. The
+[majorant-loss report](../research/reports/2026-11-19-majorant-loss-agent.md)
+also proves an unavoidable growing loss for nonnegative floor-kernel majorants;
+its global method barrier explicitly assumes a bounded permissible margin.
 
 ## The remaining gap
 

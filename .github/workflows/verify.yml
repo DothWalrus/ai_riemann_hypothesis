@@ -41,10 +41,7 @@ jobs:
           auto-config: 'false'
           build: 'true'
           use-mathlib-cache: 'true'
-      - name: Recompile the arithmetic lemma and inspect its axioms
+      - name: Recompile registered certificates and inspect their axioms
         shell: bash
         run: |
-          set -o pipefail
-          cd formalization
-          lake env lean RhCertificates/Tangent.lean | tee axioms-ci.log
-          python ../scripts/check_axiom_report.py axioms-ci.log
+          python scripts/verify_lean_certificates.py --no-build

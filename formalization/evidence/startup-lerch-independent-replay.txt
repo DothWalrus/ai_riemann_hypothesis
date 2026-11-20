@@ -1,0 +1,20 @@
+Independent source replay from repository root:
+./formalization/lakew env lean RhCertificates/StartupLerch.lean
+Exit status: 0
+Source SHA256: 7883f8d59370eb23a9ebf65fcee79da46d8ce6c5ce18294102d8b0fd4ad3e763
+
+'RhCertificates.StartupLerch.norm_phiTerm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.summable_phiTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifferenceTerm_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifference_tsum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifferenceTerm_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.exponential_rate_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifferenceTerm_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifference_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.sourceSmoothExpression_eq_smoothPart' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.StartupLerch.actualPrimeWeight_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.sourceFullExpression_eq_fullExpression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

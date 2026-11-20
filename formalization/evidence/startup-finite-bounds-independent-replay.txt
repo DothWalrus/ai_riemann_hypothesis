@@ -1,0 +1,19 @@
+Independent source replay from repository root:
+./formalization/lakew env lean RhCertificates/StartupFiniteBounds.lean
+Exit status: 0
+
+The compiler emitted nonfatal tactic-style linter warnings at lines142 and146
+concerning `<;>` where simpler sequencing would suffice. There were no errors.
+
+'RhCertificates.SmoothSeries.exp_quarter_coarse_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.exp_neg_quarter_coarse_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.exponential_half_rate_as_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothPart_half_lt_coarse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.coefficient_mul_rate_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_half_as_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_half_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_half_sum_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_half_sum_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothDerivative_half_coarse_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

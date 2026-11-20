@@ -1,4 +1,6 @@
 'RhCertificates.SmoothSeries.summable_dominator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.rate_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothPart_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RhCertificates.SmoothSeries.coefficient_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RhCertificates.SmoothSeries.coefficient_le_dominator' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RhCertificates.SmoothSeries.term_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]

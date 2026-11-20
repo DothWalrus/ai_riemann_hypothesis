@@ -1,0 +1,18 @@
+Replay command from repository root:
+./formalization/lakew env lean RhCertificates/StartupLerch.lean
+Exit code: 0
+No warnings in final replay.
+Lean: leanprover/lean4:v4.35.0
+Mathlib: 56a005855ea17e0b0958f73ec801ae140b0a1679
+
+'RhCertificates.StartupLerch.norm_phiTerm_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.summable_phiTerm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifferenceTerm_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifference_tsum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifferenceTerm_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.exponential_rate_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifferenceTerm_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.lerchDifference_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.sourceSmoothExpression_eq_smoothPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.actualPrimeWeight_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.StartupLerch.sourceFullExpression_eq_fullExpression' depends on axioms: [propext, Classical.choice, Quot.sound]

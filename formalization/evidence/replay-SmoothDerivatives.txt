@@ -1,0 +1,19 @@
+'RhCertificates.SmoothSeries.derivativeTerm_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothDerivative_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.rate_ge_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.coefficient_mul_rate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.norm_derivativeTerm_le_exponential' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.term_tsum_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.derivativeTerm_tsum_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothPart_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothPart_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothDerivative_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothPart_deriv_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.smoothPart_second_deriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.differentiableOn_smoothPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SmoothSeries.differentiableOn_smoothPart_deriv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

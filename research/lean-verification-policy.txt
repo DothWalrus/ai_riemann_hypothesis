@@ -52,11 +52,15 @@ Current status
 --------------
 On 2026-11-11 the user explicitly authorized installing the tools now.
 The project-local Lean/Mathlib environment is in formalization/; use
-./formalization/lakew from the repository root. Its setup theorem
-RhCertificates.tangent_negative is a kernel-checked arithmetic implication
-whose application to the actual screw function remains conditional.
+./formalization/lakew from the repository root. The original setup theorem
+RhCertificates.tangent_negative is retained as an arithmetic component.
+As of 2026-11-19, RhCertificates.sourceFormula_negative_on_startup is a
+kernel-checked theorem for a transcription of the source formula on
+0<t<=log(2), with analytic, numerical, digamma/Lerch and finite-sum bridges.
+See research/reports/2026-11-19-startup-certificate-synthesis.md for scope,
+independent review and replay. The global RH criterion remains unformalized.
 See docs/LEAN_VERIFICATION.md for versions, commands, and scope.
-The existing analytic results and Python interval certificates do not yet
+Other analytic results and the finite zero-tail Python certificate do not yet
 have complete Lean formalizations. Human/agent audits remain separately
 labeled. Subsequent proof research still follows the scheduled allowance
 window, without paid/API compute or resets.

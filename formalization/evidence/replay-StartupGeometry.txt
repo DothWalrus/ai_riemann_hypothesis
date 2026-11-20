@@ -1,0 +1,10 @@
+'RhCertificates.concave_le_tangent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.convex_negative_of_zero_and_negative_endpoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.startup_negative_of_convex_concave' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.startup_negative_of_second_derivative_signs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.startup_negative_of_curvature_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.tangent_negative_of_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.startup_negative_of_convex_concave_margin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.startup_negative_of_curvature_formula_margin' depends on axioms: [propext, Classical.choice, Quot.sound]

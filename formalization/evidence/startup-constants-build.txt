@@ -1,0 +1,11 @@
+Independent agent replay command (from repository root):
+./formalization/lakew env lean RhCertificates/StartupConstants.lean
+Exit code: 0
+Lean: leanprover/lean4:v4.35.0
+Mathlib: 56a005855ea17e0b0958f73ec801ae140b0a1679
+
+'RhCertificates.startupConstant_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.log_sixtyfour' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.gamma_coarse_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.log_pi_coarse_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.startupConstant_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,15 @@
+'RhCertificates.PrimeObstruction.modelPsi_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.modelPsi_monotone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.modelPsi_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.modelPsi_sub_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.modelError_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.modelError_relative_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.modelError_pnt_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.modelWeightedError_eq_convolution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.PrimeObstruction.modelWeightedError_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.modelWeightedError_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeObstruction.weightedError_lower_of_surplus' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

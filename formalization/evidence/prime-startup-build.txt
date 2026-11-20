@@ -1,0 +1,10 @@
+Replay from repository root:
+./formalization/lakew env lean RhCertificates/PrimeStartup.lean
+Exit status: 0
+
+'RhCertificates.PrimeStartup.weighted_sum_zero_of_log_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeStartup.primeContribution_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeStartup.fullExpression_eq_smoothPart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.PrimeStartup.fullExpression_negative_on_startup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

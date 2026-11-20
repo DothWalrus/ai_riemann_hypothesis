@@ -1,0 +1,18 @@
+Independent replay from repository root:
+./formalization/lakew env lean RhCertificates/SignedFactorial.lean
+Exit code: 0
+No warnings in final replay.
+Source SHA-256: 7547f2b02e2502993eff5dd29921b9b6d085256d4d423c4f4ab59ce565309bc5
+Lean: leanprover/lean4:v4.35.0
+Mathlib: 56a005855ea17e0b0958f73ec801ae140b0a1679
+
+'RhCertificates.SignedFactorial.remainder_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.unit_split_cancels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.mobiusTail_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.remainder_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.remainder_eq_log_stirlingSeq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.remainder_step_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.remainder_step_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.finite_summation_by_parts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.signed_remainder_rearrangement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.canonical_signed_remainder_rearrangement' depends on axioms: [propext, Classical.choice, Quot.sound]

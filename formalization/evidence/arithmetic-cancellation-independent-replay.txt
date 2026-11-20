@@ -1,0 +1,42 @@
+Independent source replay from repository root:
+./formalization/lakew env lean RhCertificates/ArithmeticCancellation.lean
+Exit status: 0
+Source SHA256: 7833f528476f2849761e8597a12efc0f1e005c950d600cda9d0958235989bd4d
+
+'RhCertificates.ArithmeticCancellation.mangoldt_divisor_total' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.dual_floor_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.ArithmeticCancellation.dual_nonneg_of_nonneg_representation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.dual_negative_of_enclosures' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.no_nonnegative_floor_representation_of_enclosures' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.actualWeight16_enclosures' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.no_nonnegative_actual_floor_representation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.binary_floor_inequality' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.binary_weight_necessary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.binary_actual_weight_violation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.no_nonnegative_actual_floor_representation32' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.binary_kernel_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.ArithmeticCancellation.binary_actual_weight_violation_of_large' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

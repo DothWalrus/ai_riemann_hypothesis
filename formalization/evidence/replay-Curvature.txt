@@ -1,0 +1,8 @@
+'RhCertificates.curvature_cubic_strictMonoOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.curvature_rational_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.curvature_nonpos_iff_cubic_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.exponential_curvature_nonpos_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.exp_quarter_lt_thirteen_tenths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.curvature_cubic_exp_bracket' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.exponential_curvature_nonneg_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.exists_exponential_curvature_transition' depends on axioms: [propext, Classical.choice, Quot.sound]

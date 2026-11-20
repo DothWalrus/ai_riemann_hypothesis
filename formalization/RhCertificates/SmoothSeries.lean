@@ -16,7 +16,7 @@ linear coefficient C. The natural index n=0 denotes the k=1 term of that note.
 No identity with the published screw function is assumed or established here.
 -/
 
-public section
+@[expose] public section
 noncomputable section
 
 namespace RhCertificates.SmoothSeries
@@ -30,6 +30,11 @@ def term (n : ℕ) (t : ℝ) : ℝ :=
 
 def smoothPart (C t : ℝ) : ℝ :=
   -4 * (Real.exp (t / 2) - 1) + C * t - ∑' n : ℕ, term n t
+
+theorem rate_eq (n : ℕ) : rate n = 2 * ((n : ℝ) + 1) + 1 / 2 := rfl
+
+theorem smoothPart_eq (C t : ℝ) :
+    smoothPart C t = -4 * (Real.exp (t / 2) - 1) + C * t - ∑' n : ℕ, term n t := rfl
 
 theorem summable_dominator :
     Summable (fun n : ℕ => 1 / ((n : ℝ) + 1) ^ 2) := by
@@ -161,6 +166,8 @@ theorem exponential_tail_tsum (t : ℝ) (ht : 0 < t) :
   field_simp
 
 #print axioms summable_dominator
+#print axioms rate_eq
+#print axioms smoothPart_eq
 #print axioms coefficient_nonneg
 #print axioms coefficient_le_dominator
 #print axioms term_nonneg

@@ -1,0 +1,37 @@
+Commands (from repository root):
+./formalization/lakew build RhCertificates.ArithmeticCancellation
+./formalization/lakew env lean RhCertificates/MajorantLoss.lean
+Exit status of exact-source check: 0
+Lean: leanprover/lean4:v4.35.0
+Mathlib: 56a005855ea17e0b0958f73ec801ae140b0a1679
+SHA256 MajorantLoss.lean: 3bb2ff5b074e2e78dfdc91c6837a057f0de8d54f797e0e3a7876ee7a22144e16
+SHA256 imported ArithmeticCancellation.lean: 7833f528476f2849761e8597a12efc0f1e005c950d600cda9d0958235989bd4d
+
+'RhCertificates.MajorantLoss.cost_sub_primeSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.factorial_floor_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.factorialCost_eq_weightedCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.weightedCost_le_factorialCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.excess_two_ge_delta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.weightedExcess_ge_minimumLoss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.weightedCost_sub_primeSum_ge_minimumLoss' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.factorialCost_sub_primeSum_ge_minimumLoss' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.factorialCost_sub_primeSum_ge_minimumLoss_unrestricted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.delta_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.minimumLoss_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.loss_coefficient_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.minimumLoss_tendsto_atTop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.eventual_failure_of_bounded_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.factorial_majorants_fail_with_bounded_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.positive_factorial_majorants_fail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

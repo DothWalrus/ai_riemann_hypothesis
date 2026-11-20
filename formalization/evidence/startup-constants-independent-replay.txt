@@ -1,0 +1,9 @@
+Independent source replay from repository root:
+./formalization/lakew env lean RhCertificates/StartupConstants.lean
+Exit status: 0
+
+'RhCertificates.startupConstant_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.log_sixtyfour' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.gamma_coarse_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.log_pi_coarse_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.startupConstant_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,11 @@
+Independent source replay from repository root:
+./formalization/lakew env lean RhCertificates/StartupSourceSum.lean
+Exit status: 0
+Source SHA256: 4a2efec7d7098ad35385d464aaa32a41ed1cec2aebcc9056f018714fab9cc80b
+
+'RhCertificates.StartupSourceSum.positive_sum_eq_normalized_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.StartupSourceSum.sourceFormula_eq_sourceFullExpression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

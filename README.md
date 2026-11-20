@@ -28,14 +28,14 @@ together with Suzuki's
 
 | Work | Status | What it does **not** establish |
 | --- | --- | --- |
-| Startup sign argument | Written argument and Python interval checks | A complete Lean proof for the actual function |
+| Startup sign argument | Lean proof of the transcribed source formula on `0<t<=log(2)`, including analytic, numerical and source-expression bridges | A global RH proof or a new local mathematical theorem |
 | Prime-side and zero-tail checks | Reproducible finite-range interval verification; together these cover `0 < t <= 40` | Global nonpositivity or a new zero-verification height |
 | Finite Gram-matrix checks | Checks of explicitly specified matrices | Positivity for every matrix size and point set |
 | GHS / Laplace analysis | Written derivation using established prior results | All higher-order inequalities needed for this approach |
 | Second-order Laplace inequality and first Hankel determinant | Written argument with interval-checked constants, conditional on published zero verification; awaiting independent review | Anything about zeros above the verified height, or the higher-order inequalities |
 | Map of the Laplace hierarchy (Post–Widder window, detection threshold) | Written arguments awaiting review; exploratory toy model | Any inequality at fine resolution, or anything about zeros above the verified height |
 | Consequences of a zero-free half-plane `Re s > 7/8` | Finite-range interval checks **conditional on an external result this repository has not verified** | The external result itself; any unbounded range; RH |
-| `RhCertificates.tangent_negative` | Lean-checked arithmetic implication | The analytic hypotheses connecting it to the screw function |
+| `RhCertificates.StartupCertificate` components | Reproducible Lean checks with explicit theorem statements and axiom reports | Global control of the accumulated prime contribution |
 
 Here `t = 40` is an argument of the auxiliary function. It is **not** the height
 of a zeta zero that has been newly checked.
@@ -97,7 +97,7 @@ From the repository root:
 ```bash
 ./formalization/bootstrap.sh
 ./formalization/lakew build
-./formalization/lakew env lean RhCertificates/Tangent.lean
+./formalization/lakew env lean RhCertificates/StartupCertificate.lean
 ```
 
 See [the Lean verification guide](docs/LEAN_VERIFICATION.md) for the exact setup,
@@ -107,15 +107,25 @@ The first setup downloads the matching toolchain, dependencies, and precompiled
 Mathlib files. It can require several gigabytes of storage. Do not copy someone
 else's downloaded toolchain into the repository.
 
-The current theorem says that a particular linear expression is negative **if**
-its intercept and slope satisfy specified bounds. Lean checks that implication.
-It does not yet prove those bounds for the actual Nakamura–Suzuki function.
+The main certificate now proves the explicitly defined smooth series is
+negative for every positive argument and its finite-sum extension is negative
+on `0<t<=log(2)`. Its analytic and numerical hypotheses are proved in Lean.
+Checked digamma, Lerch-series and finite-sum identities connect it to the
+paper's transcribed defining formula. Read [the combined report](research/reports/2026-11-19-startup-certificate-synthesis.md)
+for the exact scope and remaining gap.
+
+Replay all registered source and axiom checks with:
+
+```bash
+python3 scripts/verify_lean_certificates.py
+```
 
 The repository also includes a [manual verification workflow](.github/workflows/verify.yml).
 After publication, a maintainer can start it from GitHub's **Actions** tab. It
 does not run automatically on pushes. No hosted run has been performed as part
 of preparing these files. The workflow includes a check of the current Lean
-theorem's axiom report; that check does not certify the broader analytic claims.
+registered certificates' printed axiom reports; those checks do not certify
+unrelated prose or unformalized global analytic claims.
 
 ## Collaborate
 
