@@ -3,6 +3,13 @@
 Status as of 2026-11-19: **no proof or counterexample to the Riemann hypothesis;
 no new zero-verification record; no claim of a novel theorem.**
 
+**External note, 2026-11-20:** an outside claimed proof of the Generalized
+Riemann Hypothesis has been announced as a Lean development. No independent
+verification had been reported as of that date. As described, it is not
+built on this repository's methods. The status above describes this
+repository's own work only. See
+[the report](../research/reports/2026-11-20-external-grh-claim-synthesis.md).
+
 ## The research target
 
 Nakamura–Suzuki define an even real function `g` whose exponential is an
