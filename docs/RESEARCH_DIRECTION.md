@@ -4,6 +4,16 @@ This document records a precise next question, not a proposed proof of RH.
 It supplements the beginner overview in the [README](../README.md) and the
 [verification-status report](PROGRESS.md).
 
+> **External development, 2026-11-20: read this first.** A claimed proof of
+> the Generalized Riemann Hypothesis (which includes RH) has been announced
+> publicly as a Lean development. As of 2026-11-20 no independent verification
+> has been reported, and this project has not checked it. Its note does not
+> mention `g` or the methods below. If confirmed, the global
+> sign `g(t) <= 0` follows as a corollary. Recommendation to the maintainer:
+> pause new work on this route until an independent check is reported, and do
+> not let agents download or build the announced code automatically. See
+> [the report](../research/reports/2026-11-20-external-grh-claim-synthesis.md).
+
 ## Start with the correct global question
 
 Let `g` be the real even function in equation (1.5) of Nakamura–Suzuki's
