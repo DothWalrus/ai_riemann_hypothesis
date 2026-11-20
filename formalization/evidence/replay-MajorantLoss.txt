@@ -1,0 +1,28 @@
+'RhCertificates.MajorantLoss.cost_sub_primeSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.factorial_floor_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.factorialCost_eq_weightedCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.weightedCost_le_factorialCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.excess_two_ge_delta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.weightedExcess_ge_minimumLoss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.weightedCost_sub_primeSum_ge_minimumLoss' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.factorialCost_sub_primeSum_ge_minimumLoss' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.factorialCost_sub_primeSum_ge_minimumLoss_unrestricted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.delta_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.minimumLoss_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.loss_coefficient_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.minimumLoss_tendsto_atTop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.MajorantLoss.eventual_failure_of_bounded_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.factorial_majorants_fail_with_bounded_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.MajorantLoss.positive_factorial_majorants_fail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

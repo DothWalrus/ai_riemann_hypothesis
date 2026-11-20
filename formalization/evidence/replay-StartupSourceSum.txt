@@ -1,0 +1,6 @@
+'RhCertificates.StartupSourceSum.positive_sum_eq_normalized_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.StartupSourceSum.sourceFormula_eq_sourceFullExpression' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

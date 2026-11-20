@@ -1,3 +1,5 @@
 'RhCertificates.smoothPart_negative_of_constant_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RhCertificates.smoothPart_startupConstant_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RhCertificates.fullExpression_startupConstant_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.sourceFormula_negative_on_startup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.sourceFormula_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

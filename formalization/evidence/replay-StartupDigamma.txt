@@ -1,0 +1,7 @@
+'RhCertificates.complex_cot_pi_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.digamma_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.digamma_quarter_im' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.complex_digamma_coefficient_eq_startupConstant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.digammaLinearCoefficient_eq_startupConstant' depends on axioms: [propext, Classical.choice, Quot.sound]

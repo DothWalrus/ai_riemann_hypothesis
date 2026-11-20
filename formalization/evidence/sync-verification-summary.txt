@@ -1,0 +1,24 @@
+Daily repository sync validation: 2026-11-19 (America/New_York)
+
+Existing pinned Lean/Mathlib environment; no packages installed or hosted CI run.
+
+Command: PYTHONDONTWRITEBYTECODE=1 python3 scripts/verify_lean_certificates.py
+Exit: 0
+Default project build: successful (3641 jobs)
+Registered module source replays: 17
+Explicit printed declaration reports audited: 160
+Allowed logical axioms: propext, Classical.choice, Quot.sound
+Fresh individual logs: formalization/evidence/replay-*.txt
+
+Command: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s research -p 'test_*.py' -v
+Exit: 0; 29 tests passed.
+
+Command: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts -p 'test_*.py' -v
+Exit: 0; 7 tests passed.
+
+Command: PYTHONDONTWRITEBYTECODE=1 python3 research/arithmetic_floor_probe.py
+Exit: 0; finite floor-table and outward-interval diagnostic passed.
+
+These checks validate the recorded formal statements and code controls.
+They do not prove RH, certify unrelated prose, or turn numerical diagnostics
+into proofs of unformalized global analytic claims.

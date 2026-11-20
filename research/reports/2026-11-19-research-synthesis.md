@@ -49,10 +49,13 @@ The printed axiom reports contain only `propext`, `Classical.choice` and
 `Quot.sound`. The final source-formula theorem has no unproved analytic or
 numerical premise and uses no Python result as an axiom.
 
-An earlier complete registered-module replay passed. The final aggregate build
-and replay after all module registrations was interrupted and is **pending**.
-Do not describe that final integration check as passed. Before publication,
-run from the repository root:
+The final aggregate build and source replay were completed successfully during
+subsequent daily sync validation: **160 declarations across 17 registered
+modules** were rebuilt and their printed axiom reports audited. All **36 Python
+unit tests** passed (29 research tests and seven axiom-checker tests), and the
+arithmetic floor diagnostic passed. The previously pending integration check
+is now complete. See [the verification summary](../../formalization/evidence/sync-verification-summary.txt).
+Reproduce the checks from the repository root:
 
 ```sh
 python3 scripts/verify_lean_certificates.py
@@ -72,7 +75,7 @@ actual weighted Chebyshev error `J(x)` at unbounded `x`. The signed approach
 still contains uncontrolled Möbius-weighted sums; merely rewriting them or
 assuming subpower cancellation would not be a proof.
 
-Next, complete the aggregate replay above. The next formalization target is the
+The aggregate replay is complete. The next formalization target is the
 finite zero-tail checker's correctness theorem with all external zero and
 counting assumptions explicit. The next global proof attempt must identify an
 arithmetic property beyond the coarse information excluded by the models and

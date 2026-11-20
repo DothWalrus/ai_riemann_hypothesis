@@ -1,0 +1,14 @@
+'RhCertificates.SignedFactorial.remainder_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.unit_split_cancels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.mobiusTail_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.remainder_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.remainder_eq_log_stirlingSeq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.remainder_step_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.remainder_step_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.finite_summation_by_parts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RhCertificates.SignedFactorial.signed_remainder_rearrangement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RhCertificates.SignedFactorial.canonical_signed_remainder_rearrangement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
